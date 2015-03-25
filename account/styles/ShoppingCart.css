@@ -1,0 +1,32 @@
+/**
+ * 
+ * AUTHOR: John Turner
+ * VERSION: 1.0
+ * UPDATED ON: 3/6/15
+ *
+ * Styles to be applied to the shopping cart HTML in the Bootstrap modal
+ */
+/**
+ * TITLE: variables.less
+ * AUTHOR: Group 2-15
+ * VERSION: 1.0
+ * UPDATED ON: 1/23/15
+ *
+ * This file contains the LESS variables to be imported into the base.less file in the homepage app. 
+ */
+.table-responsive th {
+  text-align: center;
+}
+.table-responsive .price {
+  width: 20%;
+  text-align: right;
+}
+.table-responsive .quantity {
+  width: 20%;
+}
+.table-responsive .total_price {
+  text-align: right;
+}
+.check_button_cont {
+  float: right;
+}

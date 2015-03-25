@@ -1,0 +1,74 @@
+<%doc>
+	Author: John Turner
+	Version: 1.3
+	Updated: 2/4/15
+
+	This is the page through which administrators can view all users in the system. 
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  View Users
+</%block>
+
+<%block name="page_title_h1">
+	<h1>View Users</h1>
+</%block>
+
+<%block name="create_button_block">
+	<a class="button" href="/users/users.create/">
+		<paper-button class="create_button" raised>Create New User</paper-button>
+	</a>
+</%block>
+
+<%block name="view_table">
+	
+	## TABLE OF USERS ##
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>
+						<paper-button raised class="">Select All</paper-button>
+					</th>
+					<th>
+						Name
+					</th>
+					<th>
+						Group
+					</th>
+					<th>
+						Actions
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				%for user in users:
+					<tr>
+						<td>
+							<paper-checkbox></paper-checkbox>
+						</td>
+						<td>
+							${ user.get_full_name() }
+						</td>
+						<td>
+							${ user.groups.all()[0] }
+						</td>
+						<td>
+							## <paper-button raised class="success_button">View</paper-button> ## This view functionality isn't needed now
+							<a class="button" href="/users/users.edit/${ user.id }">
+								<paper-button raised class="edit_button">Edit</paper-button>
+							</a>
+							<a class="button" href="/users/users.delete/${ user.id }">
+								<paper-button raised class="delete_button">Delete</paper-button>
+							</a>
+						</td>
+					</tr>
+				%endfor
+			</tbody>
+		</table>	
+	</div>
+	## END TABLE OF USERS ##
+
+</%block>

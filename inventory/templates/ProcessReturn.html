@@ -1,0 +1,60 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/21/15
+
+	Page to process the return of a rental item.
+</%doc>
+
+<%inherit file="/base_admin/templates/Edit.htm" />
+
+<%block name="tab_title">
+  	Process Rental Return
+</%block>
+
+<%block name="page_title">
+
+	<h1>Process Rental Return</h1>
+
+</%block>
+
+<%block name="content">
+
+	## ROW ##
+	<div class="row">
+		
+	 ## LEFT COLUMN ##
+	 <div class="col-md-8">
+	 	
+	 	## FORM ##
+		${ form }
+		## END FORM ##
+
+	 </div>
+	 ## END LEFT COLUMN ##
+
+	 ## RIGHT COLUMN ##
+	 <div class="col-md-4">
+
+	 	<div class="right_col_content">
+	 		<h2>Actions</h2>
+
+		 	## ADD RECRUITER BUTTON ##
+			<paper-button raised data-id="${ rental_item.id }" id="add_fee" class="edit_button">Add Fee</paper-button>
+			## END ADD RECRUITER BUTTON ##
+
+		</div>
+			
+	 </div>
+	 ## END RIGHT COLUMN ##
+
+	</div>
+	## END ROW ##
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

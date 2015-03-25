@@ -1,0 +1,57 @@
+<%doc>
+  Author: John Turner
+  Version: 1.0
+  Updated: 2/2/15
+
+  This is the page that will inherit from the base_app base.htm, which will then give all the admin pages
+  the correct look and feel.
+</%doc>
+
+<%inherit file="/base_app/templates/base.htm" />
+
+## FOOTER LINKS ##
+<%block name="footer_links">
+  ## COLUMNS ##
+  <div class="row">
+
+    ## LEFT COLUMN - MENU ##
+    <div class="col-md-4">
+        <h3>Users</h3>
+        <ul>
+          <li><a href="/users/users.create/">Add User</a></li>
+          <li><a href="/users/users/">View Users</a></li>
+          <li><a href="/users/groups/">Groups</a></li>
+        </ul>
+    </div>
+    ## END LEFT COLUMN - MENU ##
+
+    ## MIDDLE COLUMN - MENU ##
+    <div class="col-md-4">
+        <h3>Inventory</h3>
+        <ul>
+          <li><a href="/inventory/items.create/1">Add Non-Wardrobe Item</a></li>
+          <li><a href="/inventory/items.create/2">Add Wardrobe Item</a></li>
+          <li><a href="/inventory/items/">View Items</a></li>
+          <li><a href="/inventory/products.create/">Add Product</a></li>
+          <li><a href="/inventory/products/">View Products</a></li>
+        </ul>
+    </div>
+    ## END MIDDLE COLUMN - MENU ##
+
+    ## RIGHT COLUMN - MENU ##
+    <div class="col-md-4">
+        <h3>Events</h3>
+        <ul>
+          <li><a href="/events/events.create">Schedule Event</a></li>
+          <li><a href="/events/events/">View Events</a></li>
+          <li><a href="#">Event Templates</a></li>
+          <li><a href="/events/venues/">Venues</a></li>
+        </ul>
+    </div>
+    ## END RIGHT COLUMN - MENU ##
+
+  </div>
+  ## END COLUMNS ##
+
+</%block>
+## END FOOTER LINKS ##

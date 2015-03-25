@@ -1,0 +1,33 @@
+/**
+ * 
+ * AUTHOR: John Turner
+ * VERSION: 1.0
+ * UPDATED ON: 2/4/15
+ *
+ * Styles to be applied to the main Editing pages throughout the site (i.e. EditUser, EditGroup...)
+ */
+/**
+ * TITLE: variables.less
+ * AUTHOR: Group 2-15
+ * VERSION: 1.0
+ * UPDATED ON: 1/23/15
+ *
+ * This file contains the LESS variables to be imported into the base.less file in the homepage app. 
+ */
+.col-md-3 {
+  text-align: center;
+}
+.user_image {
+  width: 55%;
+}
+.short {
+  width: 25%;
+}
+.col-sm-5 p {
+  display: inline-block;
+  font-size: 1.5em;
+  margin: 0 1em;
+}
+paper-button {
+  margin: 4em 2em 0 auto;
+}

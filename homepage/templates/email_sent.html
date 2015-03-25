@@ -1,0 +1,60 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/17/15
+
+	Confirmation page for the user. 
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  	Password Reset Email Sent
+</%block>
+
+<%block name="content">
+
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+				<h1>Email Sent!</h1>
+			</div>
+			## END PAGE TITLE ##
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+	## ROW ##
+	<div class="row main_row">
+		
+		## LEFT COLUMN ##
+		<div class="col-md-12">
+
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			
+			<p>An email has been sent to your inbox.</p>
+
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+
+			<p>Please follow the link in your email to reset your password.</p>
+
+		</div>
+		## END LEFT COLUMN ##
+
+	</div>
+	## END ROW ##
+
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

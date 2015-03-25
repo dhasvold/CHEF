@@ -1,0 +1,23 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 1/23/15
+
+	This is the main login page. All users that choose to login will be directed here. 
+</%doc>
+
+<%inherit file="/base_app/templates/base.htm" />
+
+<%block name="tab_title">
+  Login
+</%block>
+
+<%block name="content">
+
+	<div class="page_title">
+		<h1>Login</h1>
+	</div>
+
+	${ form.as_login() }
+
+</%block>

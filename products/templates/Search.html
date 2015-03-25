@@ -1,0 +1,35 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/7/15
+
+	HTML for the search form.
+</%doc>
+
+<%inherit file="/base_app/templates/base_ajax.htm" />
+
+<%block name="extra_links">
+
+	<link href="${ STATIC_URL }homepage/styles/login.css" rel="stylesheet" type="text/css">
+
+</%block>
+
+<%block name="content">
+				
+	<div id="error"></div>
+
+	## INPUT ##
+	<paper-input-decorator floatingLabel label="Search">
+		<input type="text" id="search_input" value="">
+	</paper-input-decorator>
+	## END INPUT ##
+
+	## SEARCH BUTTON ##
+	<div class="search_button_con">
+		<paper-button raised class="success_button" id="search_button">Search</paper-button>
+	</div>
+	## END SEARCH BUTTON ##
+
+	<div class="clearfix"></div>
+
+</%block>

@@ -1,0 +1,59 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 2/28/15
+
+	Main template that all Editing pages will inherit from (e.g. EditGroup, EditUser...)
+
+	Children of this page will need to override the following mako blocks:
+		- Page_title: For the main h1 on the page
+		- Title: for the tab title on the page
+
+	Other children can override the entire "content" block, if they wish (such as for pages that
+	are planning on uploading a picture).
+</%doc>
+
+<%inherit file="/base_admin/templates/base.htm" />
+
+<%block name="paper_elements_import">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-input/paper-input.html">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-button/paper-button.html">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-radio-group/paper-radio-group.html">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-radio-button/paper-radio-button.html">
+</%block>
+
+<%block name="content">
+	
+	<div class="page_title">
+		
+		<%block name="page_title">
+
+			<h1>Edit</h1>
+
+	 	</%block>
+
+	</div>
+
+	## ROW ##
+	<div class="row">
+
+	 ## RIGHT COLUMN ##
+	 <div class="col-md-12">
+	 	
+	 	## FORM ##
+		${ form }
+		## END FORM ##
+			
+	 </div>
+	 ## END RIGHT COLUMN ##
+
+	</div>
+	## END ROW ##
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

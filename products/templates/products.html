@@ -1,0 +1,107 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/6/15
+
+	This is the page where all of the products for sale are available for purchase.
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  Products
+</%block>
+
+<%block name="content">
+	
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+				<h1>View Items</h1>
+			</div>
+			## END PAGE TITLE ##
+
+			## SEARCH BUTTON ##
+			<div class="col-md-4">
+				<paper-button class="create_button search_button" raised>Search</paper-button>
+			</div>
+			## END SEARCH BUTTON ##
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+	## ITEMS TITLE ##
+	<h3 class="table_title">Bulk Items</h3>
+	## END ITEMS TITLE ##
+
+	## BULK ITEMS ##
+	%for item in bulk_items:
+
+		<div class="item_box">
+
+			## PRODUCT NAME/LINK TO DETAILS ##
+			<a href="/products/products.details/${ item.id }"><h4>${ item.specs.name }</h4></a>
+			## END PRODUCT NAME/LINK TO DETAILS ##
+
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			
+			## PRODUCT IMAGE ##
+			<a href="/products/products.details/${ item.id }"><img src="${ STATIC_URL }${ item.specs.photograph.image }" class="product_image"/></a>
+			## END PRODUCT IMAGE ##
+
+		</div>
+
+	%endfor
+	## END BULK ITEMS ##
+
+	## CLEARFIX DIV ##
+	<div class="clearfix"></div>
+	## END CLEARFIX DIV ##
+
+	## SEPARATOR ##
+	<hr>
+	## END SEPARATOR ##
+
+	## TABLE TITLE ##
+	<h3 class="table_title clearfix">Individualized Items</h3>
+	## END TABLE TITLE ##
+
+	## BULK ITEMS ##
+	%for item in s_items:
+
+		<div class="item_box">
+
+			## PRODUCT NAME/LINK TO DETAILS ##
+			<a href="/products/products.details/${ item.id }"><h4>${ item.specs.name }</h4></a>
+			## END PRODUCT NAME/LINK TO DETAILS ##
+
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			<div class="spacer"></div>
+			
+			## PRODUCT IMAGE ##
+			<a href="/products/products.details/${ item.id }"><img src="${ STATIC_URL }${ item.specs.photograph.image }" class="product_image"/></a>
+			## END PRODUCT IMAGE ##
+
+		</div>
+
+	%endfor
+	## END BULK ITEMS ##
+
+	## CLEARFIX DIV ##
+	<div class="clearfix"></div>
+	## END CLEARFIX DIV ##
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

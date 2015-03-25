@@ -1,0 +1,83 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/21/15
+
+	Page through which managers/employees can see all of the rentals to be returned. 
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  	Pending Rentals
+</%block>
+
+<%block name="page_title_h1">
+	<h1>Pending Rentals</h1>
+</%block>
+
+<%block name="create_button_block">
+	
+</%block>
+
+<%block name="top_left_column">
+  
+</%block>
+
+<%block name="top_right_column">
+  
+</%block>
+
+<%block name="view_table">
+	
+	## TABLE OF RENTALS ##
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>
+						Item Name
+					</th>
+					<th>
+						Customer
+					</th>
+					<th>
+						Due Date
+					</th>
+					<th>
+						Actions
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				%for rental in rentals:
+					<tr>
+						<td>
+							${ rental.item.specs.name }
+						</td>
+						<td>
+							${ rental.transaction.customer.get_full_name() }
+						</td>
+						<td>
+							%if rental.due_date < today:
+								<span class="form_errors">${ rental.due_date }</span>
+							%else:
+								${ rental.due_date }
+							%endif
+						</td>
+						<td>
+							<a class="button" href="/inventory/returns.return_rental/${ rental.id }">
+								<paper-button raised class="create_button">Check-In</paper-button>
+							</a>
+							<a class="button" href="/inventory/returns.edit/${ rental.id }">
+								<paper-button raised class="edit_button">Edit</paper-button>
+							</a>
+						</td>
+					</tr>
+				%endfor
+			</tbody>
+		</table>	
+	</div>
+	## END TABLE OF RENTALS ##
+
+</%block>

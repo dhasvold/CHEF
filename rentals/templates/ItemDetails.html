@@ -1,0 +1,108 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/20/15
+
+	This will be the details page for any given rental item.
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  	${ item.specs.name }
+</%block>
+
+<%block name="content">
+
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+				<h1>${ item.specs.name }</h1>
+			</div>
+			## END PAGE TITLE ##
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+	## ROW ##
+	<div class="row main_row">
+		
+		## LEFT COLUMN ##
+		<div class="col-md-4">
+			
+			## IMAGE OF ITEM ##
+			<img src="${ STATIC_URL }${ item.specs.photograph.image }" class="rental_image"/>
+			## END IMAGE OF ITEM ##
+
+		</div>
+		## END LEFT COLUMN ##
+
+		## MIDDLE COLUMN ##
+		<div class="col-md-5">
+			
+			## INFORMATION ABOUT ITEM ##
+			<div class="item_info">
+				<p>${ item.specs.description }</p>
+			</div>
+			## END INFORMATION ABOUT ITEM ##
+
+			<div class="spacer"></div>
+
+			## ITEM RENTAL PRICE PER DAY ##
+			<div class="item_info">
+				<p>Standard Rental Price: $${ item.standard_rental_price }</p>
+			</div>
+			## END ITEM RENTAL PRICE PER DAY ##
+
+			<div class="spacer"></div>
+
+			## ITEM RENTAL PRICE PER DAY ##
+			<div class="item_info">
+				<p>Price Per Day: $${ item.price_per_day }</p>
+			</div>
+			## END ITEM RENTAL PRICE PER DAY ##
+
+		</div>
+		## END MIDDLE COLUMN ##
+
+		## RIGHT COLUMN ##
+		<div class="col-md-3">
+
+			## START DATE FIELD ##
+			<div class="start_date">
+				<paper-input-decorator class="short" floatingLabel label="Rental Start Date">
+					<input is="core-input" id="start_date" class="datetimepicker" value=""/>
+				</paper-input-decorator>
+			</div>
+			## END START DATE FIELD ##
+
+			## END DATE FIELD ##
+			<div class="end_date">
+				<paper-input-decorator class="short" floatingLabel label="Rental End Date">
+					<input is="core-input" id="end_date" class="datetimepicker" value=""/>
+				</paper-input-decorator>
+			</div>
+			## END END DATE FIELD ##
+
+			## ADD TO CART BUTTON ##
+			<paper-button raised data-pid="${ item.id }" class="create_button add_button">Add to Cart</paper-button>
+			## END ADD TO CART BUTTON ##
+
+		</div>
+		## END RIGHT COLUMN ##
+
+	</div>
+	## END ROW ##
+
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

@@ -1,0 +1,145 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 2/28/15
+
+	Main template that all view pages will inherit from (e.g. groups, users, events...)
+
+	Note the following Mako blocks to use:
+
+	- Page_Title_H1 - to keep the format of the page-title with a create button to the 
+		right, each page will only provide a <h1> tag with the name of the title
+	- Create_Button_Block - to put in the page title format, to the right of the page title.
+	- Top_left_column - where usually Batch options go. This template will leave the 
+						batch options there, with another mako block to change only the options 
+						in the dropdown, if desired.
+	- Top_right_column - same for the top_left_column, only it will be populated with the filter
+						options, and those can be overwritten with another mako block that is available
+	- View_table - for the actual table of info
+</%doc>
+
+<%inherit file="/base_admin/templates/base.htm" />
+
+<%block name="tab_title">
+  View
+</%block>
+
+<%block name="paper_elements_import">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-input/paper-input.html">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-button/paper-button.html">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-checkbox/paper-checkbox.html">
+</%block>
+
+<%block name="content">
+	
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+
+				<%block name="page_title_h1">
+				  	View
+				</%block>
+				
+			</div>
+			## END PAGE TITLE ##
+
+			## CREATE BUTTON ##
+			<div class="col-md-4">
+				<div class="create_button">
+
+					<%block name="create_button_block">
+					  
+					</%block>
+					
+				</div>
+				
+			</div>
+			## END CREATE BUTTON ##
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+	## ROW ##
+	<div class="row">
+		
+		## LEFT COLUMN ##
+		<div class="col-md-6">
+
+			<%block name="top_left_column">
+			  	
+				## BATCH OPTIONS ##
+				<h3>Batch Options</h3>
+				
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropwdown" aria-expanded="true">
+						Batch Options
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						<li role="presentation">Delete</li>
+					</ul>
+				</div>
+
+				<paper-button class="success_button run_batch" raised>Submit</paper-button>
+				## END BATCH OPTIONS ##
+
+			</%block>
+
+		</div>
+		## END LEFT COLUMN ##
+
+		## RIGHT COLUMN ##
+		<div class="col-md-6">
+
+			<%block name="top_right_column">
+		  	
+				## FILTER OPTIONS ##
+				<h3>Filter Options</h3>
+				
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropwdown" aria-expanded="true">
+						Filter Options
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						<li role="presentation">Delete</li>
+					</ul>
+				</div>
+
+				<paper-input-decorator class="short" floatingLabel label="Criteria">
+					<input is="core-input"></input>
+				</paper-input-decorator>
+
+				<paper-button class="success_button apply_filter" raised>Submit</paper-button>
+				## END FILTER OPTIONS ##
+
+			</%block>
+
+		</div>
+		## END RIGHT COLUMN ##
+
+	</div>
+	## END ROW ##
+
+	## SEPARATOR ##
+	<hr>
+	## END SEPARATOR ##
+
+	## TABLE ##
+	<%block name="view_table">
+	  
+			
+	</%block>
+	## END TABLE ##
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

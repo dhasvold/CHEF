@@ -1,0 +1,103 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/20/15
+
+	This is the page where all of the items for rent are available to see.
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  	Rentals
+</%block>
+
+<%block name="content">
+	
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+				<h1>View Rentals Available</h1>
+			</div>
+			## END PAGE TITLE ##
+
+			## SEARCH BUTTON ##
+			<div class="col-md-4">
+				<paper-button class="create_button search_button" raised>Search</paper-button>
+			</div>
+			## END SEARCH BUTTON ##
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+	## ITEMS TITLE ##
+	<h3 class="table_title">Non Wardrobe Items</h3>
+	## END ITEMS TITLE ##
+
+	## NON WARDROBE ITEMS ##
+	%for item in non_wardrobe:
+
+		<div class="item_box">
+
+			## NON WARDROBE RENTAL NAME/LINK TO DETAILS ##
+			<a href="/rentals/rentals.details/${ item.id }"><h4>${ item.specs.name }</h4></a>
+			## END NON WARDROBE RENTAL NAME/LINK TO DETAILS ##
+
+			<div class="spacer"></div>
+			
+			## NON WARDROBE RENTAL IMAGE ##
+			<a href="/rentals/rentals.details/${ item.id }"><img src="${ STATIC_URL }${ item.specs.photograph.image }" class="rental_image"/></a>
+			## END NON WARDROBE RENTAL IMAGE ##
+
+		</div>
+
+	%endfor
+	## END NON WARDROBE ITEMS ##
+
+	## CLEARFIX DIV ##
+	<div class="clearfix"></div>
+	## END CLEARFIX DIV ##
+
+	## SEPARATOR ##
+	<hr>
+	## END SEPARATOR ##
+
+	## TABLE TITLE ##
+	<h3 class="table_title clearfix">Wardrobe Items</h3>
+	## END TABLE TITLE ##
+
+	## WARDROBE ITEMS ##
+	%for item in wardrobe:
+
+		<div class="item_box">
+
+			## WARDROBE ITEM NAME/LINK TO DETAILS ##
+			<a href="/rentals/rentals.details/${ item.id }"><h4>${ item.specs.name }</h4></a>
+			## END WARDROBE ITEM NAME/LINK TO DETAILS ##
+
+			<div class="spacer"></div>
+			
+			## WARDROBE ITEM IMAGE ##
+			<a href="/rentals/rentals.details/${ item.id }"><img src="${ STATIC_URL }${ item.specs.photograph.image }" class="rental_image"/></a>
+			## END WARDROBE ITEM IMAGE ##
+
+		</div>
+
+	%endfor
+	## END WARDROBE ITEMS ##
+
+	## CLEARFIX DIV ##
+	<div class="clearfix"></div>
+	## END CLEARFIX DIV ##
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

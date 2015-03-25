@@ -1,0 +1,38 @@
+/**
+ * 
+ * AUTHOR: John Turner
+ * VERSION: 1.0
+ * UPDATED ON: 3/6/15
+ *
+ * Styles to be applied to the main products page
+ */
+/**
+ * TITLE: variables.less
+ * AUTHOR: Group 2-15
+ * VERSION: 1.0
+ * UPDATED ON: 1/23/15
+ *
+ * This file contains the LESS variables to be imported into the base.less file in the homepage app. 
+ */
+.item_box {
+  text-align: center;
+  width: 200px;
+  height: 250px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  float: left;
+  margin: 1em;
+}
+@media screen and (max-width: 530px) {
+  .item_box {
+    float: none;
+    margin: 1em auto;
+  }
+}
+.search_button {
+  float: right;
+  margin-top: 2em;
+}
+.product_image {
+  max-width: 190px;
+}

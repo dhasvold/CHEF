@@ -1,0 +1,47 @@
+/**
+ * 
+ * AUTHOR: John Turner
+ * VERSION: 1.0
+ * UPDATED ON: 2/5/15
+ *
+ * Styles to be applied to the main View pages (i.e. users, groups...)
+ */
+/**
+ * TITLE: variables.less
+ * AUTHOR: Group 2-15
+ * VERSION: 1.0
+ * UPDATED ON: 1/23/15
+ *
+ * This file contains the LESS variables to be imported into the base.less file in the homepage app. 
+ */
+.short {
+  width: 50%;
+}
+.select_all_button {
+  margin: 0 0 0 0.25em;
+}
+tr {
+  text-align: center;
+}
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.table > thead > tr > th {
+  text-align: center;
+  vertical-align: middle;
+}
+paper-button.success_button {
+  margin-right: 2em;
+}
+paper-button.run_batch {
+  margin-top: 5em;
+}
+paper-button.apply_filter {
+  float: right;
+}
+paper-button.edit_button {
+  margin-right: 2em;
+}
+paper-button.delete_button {
+  background: #e54343;
+}

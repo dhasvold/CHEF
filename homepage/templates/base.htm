@@ -1,0 +1,202 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
+<%! from django_mako_plus.controller import static_files %>
+<%  static_renderer = static_files.StaticRenderer(self) %>
+
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+    
+    ## TITLE BLOCK ##
+    <title>
+      <%block name="tab_title">
+        Colonial Heritage Foundation
+      </%block>
+    </title>
+    ## END TITLE BLOCK ##
+    
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    ## fonts
+    <link href='http://fonts.googleapis.com/css?family=Arvo:400,400italic|Open+Sans:300italic,700italic,700,300|Pinyon+Script' rel='stylesheet' type='text/css'>
+
+    ## bootstrap:
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    ## Font Awesome Icons
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    ## Favicon
+    <link rel="icon" type="image/x-icon" href="${ STATIC_URL }homepage/media/favicon.ico" />
+
+    ## Polymer Paper Elements
+    <%block name="paper_elements_import">
+      
+    </%block>
+
+    ## Extra page-specific styles or script links
+    <%block name="extra_links">
+      
+    </%block>
+  
+    ## render the css with the same name as this page
+    ${ static_renderer.get_template_css(request, context)  }
+  
+  </head>
+  <body> 
+
+    ## NAVBAR ##
+    <div class="navbar navbar-default custom_header" role="navigation">
+      <div class="container-fluid">
+
+        ## WRAPPER ##
+        <div class="wrapper">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="main_title" href="/homepage/index">Colonial Heritage Foundation</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            
+            ## NAVBAR LINKS ##
+            <%block name="navbar_links">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/homepage/index/">Home</a></li>
+                <li><a href="/homepage/about/">About</a></li>
+                <li><a href="/homepage/terms/">Terms</a></li>
+                <li><a href="/homepage/contact/">Contact</a></li>
+                <li><a href="/homepage/login/">Login</a></li>
+              </ul>
+            </%block>
+            ## END NAVBAR LINKS ##
+          </div>
+        </div>
+        ## END WRAPPER ##
+
+      </div>
+    </div>
+    ## END NAVBAR ##
+
+    ## MAIN CONTENT ##
+    <div class="container-fluid main_content">
+
+      ## OPTIONAL FULL-WIDTH CONTENT BLOCK ##
+      <%block name="full_width_content">
+
+        ## WRAPPER ## 
+        <div class="wrapper">
+
+        ## OPTIONAL SIDEBAR ##
+        <%block name="sidebar">
+
+        </%block>
+        ## END OPTIONAL SIDEBAR ##      
+
+          ## ACTUAL CONTENT ##
+          <%block name="content">
+             If you are seeing this, something went wrong...
+          </%block>
+          ## END ACTUAL CONTENT ##
+
+        </div>
+        ## END WRAPPER ##
+
+      </%block>    
+      ## END OPTIONAL FULL-WIDTH CONTENT BLOCK ##
+
+    </div>
+    ## END MAIN CONTENT ##
+
+    ## FOOTER ##
+    <footer class="footer">
+
+      ## WRAPPER ##
+      <div class="wrapper">
+        <%block name="footer_links">
+
+          ## COLUMNS ##
+          <div class="row">
+            
+            ## LEFT COLUMN - MENU ##
+            <div class="col-md-4">
+              <h3>Main Menu</h3>
+              <ul>
+                <li><a href="/homepage/index/">Home</a></li>
+                <li><a href="/homepage/about/">About</a></li>
+                <li><a href="/homepage/terms/">Terms</a></li>
+                <li><a href="/homepage/contact/">Contact</a></li>
+              </ul>
+            </div>
+            ## END LEFT COLUMN - MENU ##
+
+            ## MIDDLE COLUMN - MENU ##
+            <div class="col-md-4">
+              <h3>Rentals</h3>
+              <ul>
+                <li><a href="/homepage/index/">Home</a></li>
+                <li><a href="/homepage/about/">About</a></li>
+                <li><a href="/homepage/terms/">Terms</a></li>
+                <li><a href="/homepage/contact/">Contact</a></li>
+              </ul>
+            </div>
+            ## END MIDDLE COLUMN - MENU ##
+
+            ## RIGHT COLUMN - MENU ##
+            <div class="col-md-4">
+              <h3>Shop</h3>
+              <ul>
+                <li><a href="/homepage/index/">Home</a></li>
+                <li><a href="/homepage/about/">About</a></li>
+                <li><a href="/homepage/terms/">Terms</a></li>
+                <li><a href="/homepage/contact/">Contact</a></li>
+              </ul>
+            </div>
+            ## END RIGHT COLUMN - MENU ##
+
+          </div>
+          ## END COLUMNS ##
+
+        </%block>
+
+        ## CENTER DIV ##  
+        <div class="center">
+
+          ## SOCIAL MEDIA ##
+          <div class="social_media">
+            <a href="http://facebook.com" target="_blank">
+              <i class="fa fa-facebook-square fa-2x"></i>  
+            </a>
+            <a href="http://instagram.com" target="_blank">
+              <i class="fa fa-instagram fa-2x"></i>  
+            </a>
+            <a href="http://twitter.com" target="_blank">
+              <i class="fa fa-twitter-square fa-2x"></i>  
+            </a>
+          </div>
+          ## END SOCIAL MEDIA ##
+
+          ## COPYRIGHT ##
+          <p>Copyright 2015</p>
+          ## END COPYRIGHT ##
+
+        </div>
+        ## END CENTER DIV ##
+
+      </div>
+      ## END WRAPPER ##
+
+    </footer>
+    ## END FOOTER ##
+  
+    ## render the JS with the same name as this page
+    ${ static_renderer.get_template_js(request, context)  }
+  
+  </body>
+</html>

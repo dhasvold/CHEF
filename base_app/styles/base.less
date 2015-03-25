@@ -1,0 +1,295 @@
+/**
+ * TITLE: base.less
+ * AUTHOR: Group 2-15
+ * VERSION: 1.0
+ * UPDATED ON: 1/23/15
+ *
+ * Main styles to be applied throughout the homepage app. 
+ */
+
+//--------------------------------------------------------------------------------//
+//-------------------------------- IMPORTS ---------------------------------------//
+//--------------------------------------------------------------------------------//
+
+@import "variables.less";
+
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------//
+//--------------------------------- GLOBAL ---------------------------------------//
+//--------------------------------------------------------------------------------//
+
+.wrapper
+{
+	max-width: @wrapperWidth;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+body
+{
+	font-family: @sans;
+	background-color: @footerColor;
+}
+
+h1, h2, h3, h4
+{
+	font-family: @serif;
+}
+
+.row
+{
+	padding: @paddingMarginSize;
+}
+
+.spacer
+{
+	height: @paddingMarginSize;
+}
+
+li
+{
+	list-style: none;
+}
+
+a
+{
+	&:hover
+	{
+		text-decoration: none;
+	}
+
+	&.button
+	{
+		color: inherit;
+	}
+}
+
+.social_media
+{
+	i
+		{
+			margin-bottom: 0;
+		}
+
+	a
+	{
+		color: @titleColor;
+
+		&:hover
+		{
+			color: white;
+		}
+	}
+}
+
+.center
+{
+	text-align: center;
+}
+
+paper-button
+{
+	&.success_button
+	{
+		background: @successButtonColor;
+	}
+
+	&.edit_button
+	{
+		background: @editButtonColor;
+	}
+
+	&.delete_button
+	{
+		background: @deleteButtonColor;
+	}
+
+	&.create_button
+	{
+		background: @createButtonColor;
+	}
+
+	// Styles to make the submit button work //
+	&.form_button
+	{
+		padding: 0;
+
+		&::shadow .button-content
+		{
+			padding: 0;
+		}
+
+		& button
+		{
+			padding: .6em;
+			background-color: transparent;
+			border-color: transparent;
+
+			&::-moz-focus-inner
+			{
+				border: 0;
+			}
+		}
+	}
+	// End styles to make submit button work //
+}
+
+.field_error
+{
+	color: red;
+	margin-top: 2em;
+}
+
+.form_errors
+{
+	color: red;
+}
+
+paper-input
+{
+	width: 100%
+}
+
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------//
+//------------------------------ HEADER/NAVBAR -----------------------------------//
+//--------------------------------------------------------------------------------//
+
+.custom_header
+{
+	background-color: rgba(0, 0, 0, 0.8);
+	margin-bottom: 0;
+	z-index: 1000;
+	border: none;
+}
+
+.navbar
+{
+	border-radius: 0; 
+}
+
+.navbar-default .navbar-nav>li>a 
+{
+	color: @titleColor;
+
+	&:hover
+	{
+		color: @titleACColor;
+	}
+}
+
+#main_title
+{
+	color: @titleColor;
+
+	&:hover
+	{
+		color: @titleACColor;
+	}
+
+}
+
+.full_width_image
+{
+	width: 100%;
+	margin-top: -@paddingMarginSize * 4;
+	margin-bottom: @paddingMarginSize * 3;
+
+	@media screen and (max-width: 600px) 
+	{
+		margin-top: 0;
+	}
+
+	img
+	{
+		width: 100%;
+	}
+}
+
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------//
+//------------------------------- MAIN CONTENT -----------------------------------//
+//--------------------------------------------------------------------------------//
+
+.main_content
+{
+	background-color: white;
+}
+
+.page_title
+{
+	border-bottom: @borderStyle;
+	margin: 0;
+
+	& .row .col-md-4
+	{
+		padding-right: 0;
+	}
+
+	.row .col-md-8
+	{
+		padding-left: 0;
+	}
+}
+
+div.create_button
+{
+	& paper-button
+	{
+		float: right;
+		margin-right: 0;
+	}
+}
+
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------//
+//--------------------------------- FOOTER ---------------------------------------//
+//--------------------------------------------------------------------------------//
+
+.footer
+{
+	background-color: @footerColor;
+
+	li
+	{
+		a
+		{
+			color: white;
+
+			&:hover
+			{
+				color: @titleColor;
+			}
+		}
+	}
+	
+	.center
+	{
+		p
+		{
+			margin: 0;
+			padding-bottom: @paddingMarginSize;
+		}
+		.fa
+		{
+			margin-bottom: @paddingMarginSize/2;
+		}
+	}
+}
+
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//

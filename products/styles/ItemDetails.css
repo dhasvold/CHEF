@@ -1,0 +1,41 @@
+/**
+ * 
+ * AUTHOR: John Turner
+ * VERSION: 1.0
+ * UPDATED ON: 3/6/15
+ *
+ * Styles to be applied to the pages with specific product details.
+ */
+/**
+ * TITLE: variables.less
+ * AUTHOR: Group 2-15
+ * VERSION: 1.0
+ * UPDATED ON: 1/23/15
+ *
+ * This file contains the LESS variables to be imported into the base.less file in the homepage app. 
+ */
+.main_row {
+  margin-top: 3em;
+}
+.add_button {
+  display: block;
+  width: 10em;
+  margin: 0 auto;
+}
+.quantity_field {
+  width: 10em;
+  margin: 0 auto;
+}
+.quantity_field paper-input-decorator {
+  display: block;
+  width: inherit;
+  margin: 0 auto 1em auto;
+  text-align: right;
+  padding-top: 0;
+}
+.quantity_field paper-input-decorator input {
+  text-align: right;
+}
+.product_image {
+  max-width: 340px;
+}

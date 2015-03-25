@@ -1,0 +1,62 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/7/15
+
+	The page through which all reports are rendered. 
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  ${ report_name } Report
+</%block>
+
+<%block name="page_title_h1">
+	<h1>${ report_name } Report</h1>
+</%block>
+
+<%block name="view_table">
+	
+	## TABLE OF ITEMS ##
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>
+						<paper-button raised class="">Select All</paper-button>
+					</th>
+					<th>
+						Item Name
+					</th>
+					<th>
+						Customer
+					</th>
+					<th>
+						Due Date
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				%for item in items:
+					<tr>
+						<td>
+							<paper-checkbox></paper-checkbox>
+						</td>
+						<td>
+							${ item.item.specs.name }
+						</td>
+						<td>
+							${ item.transaction.customer.get_full_name() }
+						</td>
+						<td>
+							${ item.due_date.strftime('%b %d, %Y') }
+						</td>
+					</tr>
+				%endfor
+			</tbody>
+		</table>	
+	</div>
+	## END TABLE OF ITEMS ##
+
+</%block>

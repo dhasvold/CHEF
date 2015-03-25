@@ -1,0 +1,64 @@
+<%doc>
+	Author: John Turner
+	Version: 2.0
+	Updated: 3/4/15
+
+	This is the page through which a given user can see their information WITH OR WITHOUT the ability to edit.
+
+	The view will determine whether or not the user can edit. 
+</%doc>
+
+<%inherit file="/base_admin/templates/Edit.htm" />
+
+<%block name="tab_title">
+  	My Account
+</%block>
+
+<%block name="content">
+
+	<div class="page_title">
+		
+		<%block name="page_title">
+
+			<h1>My Account</h1>
+
+	 	</%block>
+
+	</div>
+
+	## ROW ##
+	<div class="row">
+		
+		 ## LEFT COLUMN ##
+		 <div class="col-md-3">
+		 	<img class="user_image" src="${ STATIC_URL }homepage/media/add-user.png">
+
+		 	## UPLOAD IMAGE BUTTON ##
+			<paper-button raised class="edit_button">Upload Image</paper-button>
+			## END UPLOAD IMAGE BUTTON ##
+
+			## CHANGE PASSWORD BUTTON ##
+			<paper-button raised id="change_password_button" class="create_button">Change Password</paper-button>
+			## END CHANGE PASSWORD BUTTON ##
+
+		 </div>
+		 ## END LEFT COLUMN ##
+
+		 ## RIGHT COLUMN ##
+		 <div class="col-md-9">
+
+		 	${ form }
+				
+		 </div>
+		 ## END RIGHT COLUMN ##
+
+	</div>
+	## END ROW ##
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>
