@@ -1,0 +1,86 @@
+<%doc>
+	Author: Derik Hasvold
+	Version: 1.0
+	Updated: 3/27/15
+
+</%doc>
+
+<%inherit file="/base_admin/templates/base.htm" />
+
+<%block name="tab_title">
+  Event Areas
+</%block>
+
+<%block name="paper_elements_import">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-input/paper-input.html">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-button/paper-button.html">
+	<link rel="import" href="${ STATIC_URL }base_app/styles/bower_components/paper-checkbox/paper-checkbox.html">
+</%block>
+
+<%block name="extra_links">
+	<link rel="stylesheet" type="text/css" href="${ STATIC_URL }base_admin/styles/View.css">
+</%block>
+
+<%block name="content">
+	
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+				<h1>Event Areas</h1>
+			</div>
+			## END PAGE TITLE ##
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+	## ROW ##
+	<div class="row">
+		
+		## LEFT COLUMN ##
+		<div class="col-md-6">
+
+
+		</div>
+		## END LEFT COLUMN ##
+
+		## RIGHT COLUMN ##
+		<div class="col-md-6">
+
+		</div>
+		## END RIGHT COLUMN ##
+
+	</div>
+	## END ROW ##
+
+	## SEPARATOR ##
+	<hr>
+	## END SEPARATOR ##
+
+
+
+    %for area in areas:
+        <div id="spacer">
+            <h2>${ area.name }</h2>
+            <b>Description:</b> ${ area.description }
+            <br>
+            <b>Products for sale:</b>
+            %for item in areas[area]:
+            <div id="image">
+                <img src="${ STATIC_URL}${ item.related_image }"
+            </div>
+            %endfor
+
+        </div>
+    %endfor
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

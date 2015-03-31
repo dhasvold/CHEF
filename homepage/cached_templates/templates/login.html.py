@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425440836.373023
+_modified_time = 1427322424.433257
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/homepage/templates/login.html'
+_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master\\homepage\\templates/login.html'
 _template_uri = 'login.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['tab_title', 'content']
+_exports = ['content', 'tab_title']
 
 
 def _mako_get_namespace(context, name):
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def tab_title():
-            return render_tab_title(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
+        def tab_title():
+            return render_tab_title(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -45,18 +45,6 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_tab_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def tab_title():
-            return render_tab_title(context)
-        __M_writer = context.writer()
-        __M_writer('\n  Login\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -77,8 +65,20 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_tab_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def tab_title():
+            return render_tab_title(context)
+        __M_writer = context.writer()
+        __M_writer('\n  Login\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"line_map": {"80": 74, "59": 11, "27": 0, "37": 7, "38": 9, "65": 15, "72": 15, "73": 21, "74": 21, "43": 13, "53": 11}, "uri": "login.html", "source_encoding": "ascii", "filename": "/Users/John/DevProjects/Repositories/chef/homepage/templates/login.html"}
+{"source_encoding": "ascii", "uri": "login.html", "line_map": {"80": 74, "27": 0, "68": 11, "37": 7, "38": 9, "74": 11, "43": 13, "60": 15, "61": 21, "62": 21, "53": 15}, "filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\homepage\\templates/login.html"}
 __M_END_METADATA
 """

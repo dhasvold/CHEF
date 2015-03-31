@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1422408240.371713
+_modified_time = 1427322406.987047
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/chef/homepage/templates/index.html'
+_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master\\homepage\\templates/index.html'
 _template_uri = 'index.html'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -28,9 +28,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def full_width_content():
             return render_full_width_content(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -46,9 +46,9 @@ def render_body(context,**pageargs):
 def render_full_width_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def full_width_content():
             return render_full_width_content(context)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n\t<div class="full_width_image">\n\t\t<img src="')
         __M_writer(str( STATIC_URL ))
@@ -72,6 +72,6 @@ def render_full_width_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "ascii", "filename": "/Users/John/DevProjects/chef/homepage/templates/index.html", "uri": "index.html", "line_map": {"64": 53, "65": 60, "66": 63, "35": 11, "36": 13, "73": 67, "46": 15, "27": 0, "67": 67, "53": 15, "54": 18, "55": 18, "56": 22, "57": 26, "58": 30, "59": 32, "60": 35, "61": 42, "62": 44, "63": 51}}
+{"source_encoding": "ascii", "uri": "index.html", "line_map": {"64": 53, "65": 60, "66": 63, "35": 11, "36": 13, "73": 67, "46": 15, "27": 0, "67": 67, "53": 15, "54": 18, "55": 18, "56": 22, "57": 26, "58": 30, "59": 32, "60": 35, "61": 42, "62": 44, "63": 51}, "filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\homepage\\templates/index.html"}
 __M_END_METADATA
 """

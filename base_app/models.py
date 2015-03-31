@@ -58,14 +58,14 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 # Stores all addresses used in relation to Venues and Users
 
 class Address(models.Model):
-    address1 = models.TextField(max_length=100)
-    address2 = models.TextField(null=True)
-    city     = models.TextField(max_length=100)
-    state    = models.TextField(max_length=2)
-    ZIP      = models.TextField(max_length=10)
+	address1 = models.TextField(max_length=100)
+	address2 = models.TextField(null=True)
+	city     = models.TextField(max_length=100)
+	state    = models.TextField(max_length=2)
+	ZIP      = models.TextField(max_length=10)
 
-    def __str__(self):
-        return '{0} {1}, {2}'.format(self.address1, self.city, self.state)
+	def __str__(self):
+		return '{0} {1}, {2}'.format(self.address1, self.city, self.state)
 
 #########################################################################################
 ################################# CUSTOM USER CLASS #####################################
@@ -75,45 +75,45 @@ class Address(models.Model):
 
 class User(AbstractUser):
 
-    # The following is imported from AbstractUser
-    # username 
-    # first_name
-    # last_name
-    # email
-    # is_staff
-    # is_active
-    # date_joined
-    # objects = UserManager()
+	# The following is imported from AbstractUser
+	# username
+	# first_name
+	# last_name
+	# email
+	# is_staff
+	# is_active
+	# date_joined
+	# objects = UserManager()
 
-    # USERNAME_FIELD = 'username'
-    # REQUIRED_FIELDS = ['email']
+	# USERNAME_FIELD = 'username'
+	# REQUIRED_FIELDS = ['email']
 
-    # def get_full_name(self):
+	# def get_full_name(self):
 
-    # def get_short_name(self):
+	# def get_short_name(self):
 
-    # def email_user(self, subject, message, from_email=None, **kwargs):
-        
-    phone                  = models.TextField()
-    date_appointed_agent   = models.DateField(null=True)
-    security_question      = models.TextField(max_length=255)
-    security_answer        = models.TextField(max_length=255)
-    organization_name      = models.TextField(null=True)
-    bio_sketch             = models.TextField(null=True, max_length=1000)
-    emergency_contact_name = models.TextField(null=True, max_length=100)
-    emergency_phone        = models.TextField(null=True, max_length=14)
-    emergency_relationship = models.TextField(null=True, max_length=100)
+	# def email_user(self, subject, message, from_email=None, **kwargs):
 
-    # The address column is not null by default, though the business logic will prevent people from being 
-    # created without an address (except the original superuser created by the initialize script)
-    address = models.ForeignKey(Address, null=True)
+	phone                  = models.TextField()
+	date_appointed_agent   = models.DateField(null=True)
+	security_question      = models.TextField(max_length=255)
+	security_answer        = models.TextField(max_length=255)
+	organization_name      = models.TextField(null=True)
+	bio_sketch             = models.TextField(null=True, max_length=1000)
+	emergency_contact_name = models.TextField(null=True, max_length=100)
+	emergency_phone        = models.TextField(null=True, max_length=14)
+	emergency_relationship = models.TextField(null=True, max_length=100)
 
-    def send_password_recovery_email(self):
-        "Returns confirmation that password recovery email was sent and sends confirmation email"
-        # Currently, we don't understand how to exactly create these methods
-        # but we wanted to be able to model them for future reference
-        
-    recovery_email = property(send_password_recovery_email)
+	# The address column is not null by default, though the business logic will prevent people from being
+	# created without an address (except the original superuser created by the initialize script)
+	address = models.ForeignKey(Address, null=True)
+
+	def send_password_recovery_email(self):
+		"Returns confirmation that password recovery email was sent and sends confirmation email"
+		# Currently, we don't understand how to exactly create these methods
+		# but we wanted to be able to model them for future reference
+
+	recovery_email = property(send_password_recovery_email)
 
 #########################################################################################
 ##################################### PHOTOGRAPH ########################################
@@ -123,14 +123,14 @@ class User(AbstractUser):
 # system.
 
 class Photograph(models.Model):
-    date_taken   = models.DateField(default=timezone.now())
-    place_taken  = models.TextField()
-    image        = models.ImageField()
-    description  = models.TextField(max_length=1000)
-    photographer = models.ForeignKey(User)
+	date_taken   = models.DateField(default=timezone.now())
+	place_taken  = models.TextField()
+	image        = models.ImageField()
+	description  = models.TextField(max_length=1000)
+	photographer = models.ForeignKey(User)
 
-    def __str__(self):
-        return self.image
+	def __str__(self):
+		return self.image
 
 #########################################################################################
 ######################################## VENUE ##########################################
@@ -140,11 +140,11 @@ class Photograph(models.Model):
 # so that each venue can be stored for use later.
 
 class Venue(models.Model):
-    name    = models.TextField(max_length=100)
-    address = models.ForeignKey(Address)
+	name    = models.TextField(max_length=100)
+	address = models.ForeignKey(Address)
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.name
 
 #########################################################################################
 #################################### PUBLIC EVENT #######################################
@@ -154,18 +154,18 @@ class Venue(models.Model):
 # and then have the Event pull from the template and fill in the instance info.
 
 class PublicEvent(models.Model):
-    name        = models.TextField(max_length=100)
-    description = models.TextField(max_length=1000)
+	name        = models.TextField(max_length=100)
+	description = models.TextField(max_length=1000)
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.name
 
-    def create_event_sumary(self):
-        '''Returns summary information about an event after it is completed'''
-        # Currently, we don't understand how to exactly create these methods
-        # but we wanted to be able to model them for future reference
-    
-    event_summary = property(create_event_sumary)
+	def create_event_sumary(self):
+		'''Returns summary information about an event after it is completed'''
+		# Currently, we don't understand how to exactly create these methods
+		# but we wanted to be able to model them for future reference
+
+	event_summary = property(create_event_sumary)
 
 #########################################################################################
 ######################################## EVENT ##########################################
@@ -175,15 +175,16 @@ class PublicEvent(models.Model):
 # areas, and takes place at a venue. 
 
 class Event(models.Model):
-    name           = models.TextField(max_length=100)
-    start_date     = models.DateTimeField()
-    end_date       = models.DateTimeField()
-    event_map      = models.FileField()
-    venue          = models.ForeignKey(Venue)
-    event_template = models.ForeignKey(PublicEvent, null=True)
+	name           = models.TextField(max_length=100)
+	related_image = models.ImageField()
+	start_date     = models.DateTimeField()
+	end_date       = models.DateTimeField()
+	event_map      = models.FileField()
+	venue          = models.ForeignKey(Venue, null=True)
+	event_template = models.ForeignKey(PublicEvent, null=True)
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.name
 
 #########################################################################################
 ######################################### AREA ##########################################
@@ -196,15 +197,15 @@ class Event(models.Model):
 # roles. 
 
 class Area(models.Model):
-    name         = models.TextField(max_length=100)
-    description  = models.TextField(max_length=1000)
-    place_number = models.IntegerField(validators=[MinValueValidator(1)])
-    coordinator  = models.ForeignKey('User', related_name='coordinator')
-    supervisor   = models.ForeignKey('User', related_name='supervisor')
-    event        = models.ForeignKey(Event)
+	name         = models.TextField(max_length=100)
+	description  = models.TextField(max_length=1000)
+	place_number = models.IntegerField(validators=[MinValueValidator(1)], null=True)
+	coordinator  = models.ForeignKey('User', related_name='coordinator', null=True)
+	supervisor   = models.ForeignKey('User', related_name='supervisor', null=True)
+	event        = models.ForeignKey(Event)
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.name
 
 #########################################################################################
 ################################## EXPECTED SALE ITEM ###################################
@@ -215,14 +216,15 @@ class Area(models.Model):
 # the inventory.
 
 class ExpectedSaleItem(models.Model):
-    name        = models.TextField(max_length=100)
-    description = models.TextField(max_length=1000)
-    low_price   = models.DecimalField(max_digits=10, decimal_places=2)
-    high_price  = models.DecimalField(max_digits=10, decimal_places=2)
-    area        = models.ForeignKey(Area) 
+	name        = models.TextField(max_length=100)
+	related_image = models.ImageField(null=True)
+	description = models.TextField(max_length=1000, null=True)
+	low_price   = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+	high_price  = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+	area        = models.ForeignKey(Area)
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.name
 
 #########################################################################################
 ####################################### CATEGORY ########################################
@@ -231,10 +233,10 @@ class ExpectedSaleItem(models.Model):
 # Category is tied to Product Specification, which describes the category of the item
 
 class Category(models.Model):
-    description = models.TextField(max_length=1000)
+	description = models.TextField(max_length=1000)
 
-    def __str__(self):
-        return self.description
+	def __str__(self):
+		return self.description
 
 #########################################################################################
 ################################# PRODUCT SPECIFICATION #################################
@@ -244,22 +246,22 @@ class Category(models.Model):
 # needed to define and understand an inventory item. 
 
 class ProductSpecification(models.Model):
-    name            = models.TextField(max_length=100)
-    price           = models.DecimalField(max_digits=10, decimal_places=2)
-    description     = models.TextField(max_length=1000)
-    manufacturer    = models.TextField(max_length=100)
-    average_cost    = models.DecimalField(max_digits=10, decimal_places=2)
-    sku             = models.TextField(null=True)
-    order_form_name = models.TextField(null=True, max_length=255)
-    production_time = models.TextField(null=True, max_length=15)
-    photograph      = models.ForeignKey(Photograph, null=True)
-    
-    # Produced by is for any user that also makes this product
-    produced_by = models.ForeignKey(User, null=True)
-    category    = models.ForeignKey(Category, null=True)
+	name            = models.TextField(max_length=100)
+	price           = models.DecimalField(max_digits=10, decimal_places=2)
+	description     = models.TextField(max_length=1000)
+	manufacturer    = models.TextField(max_length=100)
+	average_cost    = models.DecimalField(max_digits=10, decimal_places=2)
+	sku             = models.TextField(null=True)
+	order_form_name = models.TextField(null=True, max_length=255)
+	production_time = models.TextField(null=True, max_length=15)
+	photograph      = models.ForeignKey(Photograph, null=True)
 
-    def __str__(self):
-        return self.name
+	# Produced by is for any user that also makes this product
+	produced_by = models.ForeignKey(User, null=True)
+	category    = models.ForeignKey(Category, null=True)
+
+	def __str__(self):
+		return self.name
 
 #########################################################################################
 ###################################### INVENTORY ########################################
@@ -271,15 +273,15 @@ class ProductSpecification(models.Model):
 # are located. 
 
 class Inventory(models.Model):
-    quantity_on_hand = models.IntegerField(validators=[MinValueValidator(0)])
-    shelf_location   = models.TextField(max_length=100)
-    order_file       = models.TextField(max_length=1000)
-    condition        = models.TextField(max_length=100)
-    note             = models.TextField(null=True)
-    specs            = models.ForeignKey(ProductSpecification)
+	quantity_on_hand = models.IntegerField(validators=[MinValueValidator(0)])
+	shelf_location   = models.TextField(max_length=100)
+	order_file       = models.TextField(max_length=1000)
+	condition        = models.TextField(max_length=100)
+	note             = models.TextField(null=True)
+	specs            = models.ForeignKey(ProductSpecification)
 
-    def __str__(self):
-        return '{0}: {1} on hand'.format(self.specs.name, self.quantity_on_hand)
+	def __str__(self):
+		return '{0}: {1} on hand'.format(self.specs.name, self.quantity_on_hand)
 
 #########################################################################################
 ######################################## ITEM ###########################################
@@ -290,23 +292,23 @@ class Inventory(models.Model):
 # from Item), then it is a non-wardrobe item
 
 class Item(Inventory):
-    # If the item has a standard rental price, times rented is filled, price per day is listed
-    # and it has a replacement price, then it is rentable
-    standard_rental_price = models.DecimalField(null=True, max_digits=10, decimal_places=2)
-    owner                 = models.ForeignKey(User, null=True)
-    times_rented          = models.IntegerField(null=True, validators=[MinValueValidator(0)])
-    price_per_day         = models.DecimalField(null=True, max_digits=10, decimal_places=2)
-    replacement_price     = models.DecimalField(null=True, max_digits=10, decimal_places=2)
+	# If the item has a standard rental price, times rented is filled, price per day is listed
+	# and it has a replacement price, then it is rentable
+	standard_rental_price = models.DecimalField(null=True, max_digits=10, decimal_places=2)
+	owner                 = models.ForeignKey(User, null=True)
+	times_rented          = models.IntegerField(null=True, validators=[MinValueValidator(0)])
+	price_per_day         = models.DecimalField(null=True, max_digits=10, decimal_places=2)
+	replacement_price     = models.DecimalField(null=True, max_digits=10, decimal_places=2)
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.name
 
-    def generate_inventory_report(self):
-        "Returns the information about the products held in inventory"
-        # Currently, we don't understand how to exactly create these methods
-        # but we wanted to be able to model them for future reference
-        
-    inventory_report = property(generate_inventory_report)
+	def generate_inventory_report(self):
+		"Returns the information about the products held in inventory"
+		# Currently, we don't understand how to exactly create these methods
+		# but we wanted to be able to model them for future reference
+
+	inventory_report = property(generate_inventory_report)
 
 #########################################################################################
 #################################### WARDROBE ITEM ######################################
@@ -315,16 +317,16 @@ class Item(Inventory):
 # Inherits from Item. 
 
 class WardrobeItem(Item):
-    size          = models.IntegerField(validators=[MinValueValidator(0)])
-    size_modifier = models.TextField(max_length=10)
-    gender        = models.TextField(max_length=1)
-    color         = models.TextField(max_length=10)
-    pattern       = models.TextField(max_length=100)
-    start_year    = models.DateField()
-    end_year      = models.DateField()
+	size          = models.IntegerField(validators=[MinValueValidator(0)])
+	size_modifier = models.TextField(max_length=10)
+	gender        = models.TextField(max_length=1)
+	color         = models.TextField(max_length=10)
+	pattern       = models.TextField(max_length=100)
+	start_year    = models.DateField()
+	end_year      = models.DateField()
 
-    def __str__(self):
-        return self.note
+	def __str__(self):
+		return self.note
 
 #########################################################################################
 ################################### SERIALIZED PRODUCT ##################################
@@ -333,21 +335,21 @@ class WardrobeItem(Item):
 # Branches down a different side, the "products" for sale side from Inventory. 
 
 class SerializedProduct(Inventory):
-    serial_number = models.TextField(max_length=100)
-    date_acquired = models.DateTimeField(default=timezone.now())
-    cost          = models.DecimalField(max_digits=10, decimal_places=2)
-    status        = models.TextField(max_length=100)
+	serial_number = models.TextField(max_length=100)
+	date_acquired = models.DateTimeField(default=timezone.now())
+	cost          = models.DecimalField(max_digits=10, decimal_places=2)
+	status        = models.TextField(max_length=100)
 
 
-    def __str__(self):
-        return self.inventory.description
+	def __str__(self):
+		return self.inventory.description
 
-    def generate_product_list(self):
-        "Generates a product list and returns the names of the products"
-        # Currently, we don't understand how to exactly create these methods
-        # but we wanted to be able to model them for future reference
-        
-    product_list = property(generate_product_list)
+	def generate_product_list(self):
+		"Generates a product list and returns the names of the products"
+		# Currently, we don't understand how to exactly create these methods
+		# but we wanted to be able to model them for future reference
+
+	product_list = property(generate_product_list)
 
 #########################################################################################
 ###################################### TRANSACTION ######################################
@@ -358,45 +360,45 @@ class SerializedProduct(Inventory):
 # whether or not it is a rental or a sale.
 
 class Transaction(models.Model):
-    transaction_date = models.DateTimeField(default=timezone.now())
-    date_packed      = models.DateTimeField(null=True)
-    packed_by        = models.ForeignKey(User, related_name='packer', null=True)
-    date_paid        = models.DateTimeField(null=True)
-    payment_handler  = models.ForeignKey(User, related_name='handler', null=True)
-    date_shipped     = models.DateTimeField(null=True)
-    shipped_by       = models.ForeignKey(User, related_name='shipper', null=True)
-    tracking_number  = models.TextField(max_length=100, null=True)
-    customer         = models.ForeignKey(User)
+	transaction_date = models.DateTimeField(default=timezone.now())
+	date_packed      = models.DateTimeField(null=True)
+	packed_by        = models.ForeignKey(User, related_name='packer', null=True)
+	date_paid        = models.DateTimeField(null=True)
+	payment_handler  = models.ForeignKey(User, related_name='handler', null=True)
+	date_shipped     = models.DateTimeField(null=True)
+	shipped_by       = models.ForeignKey(User, related_name='shipper', null=True)
+	tracking_number  = models.TextField(max_length=100, null=True)
+	customer         = models.ForeignKey(User)
 
-    # An agent is a user that has been appointed as an agent, and the one that handles the transaction
-    # if it is in the store
-    agent = models.ForeignKey('User',related_name='agent', null=True)
+	# An agent is a user that has been appointed as an agent, and the one that handles the transaction
+	# if it is in the store
+	agent = models.ForeignKey('User',related_name='agent', null=True)
 
-    def __str__(self):
-        return self.tracking_number
+	def __str__(self):
+		return self.tracking_number
 
-    def email_receipt(self):
-        '''
-            Emails receipt to user and returns confirmation that it was sent
-        '''
-        # Currently, we don't understand how to exactly create these methods
-        # but we wanted to be able to model them for future reference
-        
-    receipt = property(email_receipt)
+	def email_receipt(self):
+		'''
+			Emails receipt to user and returns confirmation that it was sent
+		'''
+		# Currently, we don't understand how to exactly create these methods
+		# but we wanted to be able to model them for future reference
 
-    def add_shipping_info(self):
-        '''
-            Gets the customer's shipping info
+	receipt = property(email_receipt)
 
-            We'll add the logic here later
-        '''
+	def add_shipping_info(self):
+		'''
+			Gets the customer's shipping info
 
-    def add_payment_info(self):
-        '''
-            Gets the payment info from the customer
+			We'll add the logic here later
+		'''
 
-            We'll add the logic later.
-        '''
+	def add_payment_info(self):
+		'''
+			Gets the payment info from the customer
+
+			We'll add the logic later.
+		'''
 
 #########################################################################################
 ####################################### LINE ITEM #######################################
@@ -406,14 +408,14 @@ class Transaction(models.Model):
 # line items inherit from it. 
 
 class LineItem(models.Model):
-    amount      = models.DecimalField(max_digits=10, decimal_places=2)
-    transaction = models.ForeignKey(Transaction)
+	amount      = models.DecimalField(max_digits=10, decimal_places=2)
+	transaction = models.ForeignKey(Transaction)
 
-    class Meta:
-        abstract = True
+	class Meta:
+		abstract = True
 
-    def __str__(self):
-        return self.amount
+	def __str__(self):
+		return self.amount
 
 #########################################################################################
 ########################################## FEE ##########################################
@@ -426,10 +428,10 @@ class LineItem(models.Model):
 # cannot be abstract. 
 
 class Fee(LineItem):
-    waived = models.BooleanField(default=False)
+	waived = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.waived
+	def __str__(self):
+		return self.waived
 
 #########################################################################################
 ######################################## LATE FEE #######################################
@@ -438,10 +440,10 @@ class Fee(LineItem):
 # Late fees are applied when the rental is returned after the due date.
 
 class LateFee(Fee):
-    days_late = models.IntegerField(validators=[MinValueValidator(1)])
+	days_late = models.IntegerField(validators=[MinValueValidator(1)])
 
-    def __str__(self):
-        return self.days_late
+	def __str__(self):
+		return self.days_late
 
 #########################################################################################
 ####################################### DAMAGE FEE ######################################
@@ -451,10 +453,10 @@ class LateFee(Fee):
 # rented. 
 
 class DamageFee(Fee):
-    description = models.TextField(max_length=1000)
+	description = models.TextField(max_length=1000)
 
-    def __str__(self):
-        return self.description
+	def __str__(self):
+		return self.description
 
 #########################################################################################
 ###################################### RENTAL ITEM ######################################
@@ -464,41 +466,41 @@ class DamageFee(Fee):
 # are any
 
 class RentalItem(LineItem):
-    date_out         = models.DateTimeField(default=timezone.now())
-    due_date         = models.DateField()
-    date_in          = models.DateTimeField(null=True)
-    discount_percent = models.DecimalField(max_digits=3, decimal_places=2, null=True, default=None)
-    item             = models.ForeignKey(Item)
-    
-    # the agent is the user that processes the return for the rental
-    agent = models.ForeignKey(User, null=True)
-    fee = models.ForeignKey(Fee, null=True)
+	date_out         = models.DateTimeField(default=timezone.now())
+	due_date         = models.DateField()
+	date_in          = models.DateTimeField(null=True)
+	discount_percent = models.DecimalField(max_digits=3, decimal_places=2, null=True, default=None)
+	item             = models.ForeignKey(Item)
 
-    def __str__(self):
-        return self.item.specs.name 
+	# the agent is the user that processes the return for the rental
+	agent = models.ForeignKey(User, null=True)
+	fee = models.ForeignKey(Fee, null=True)
 
-    def get_overdue_items(self):
-        '''
-            Returns the list of all items that are overdue
+	def __str__(self):
+		return self.item.specs.name
 
-            We'll put the logic here later.
-        '''
+	def get_overdue_items(self):
+		'''
+			Returns the list of all items that are overdue
 
-    def notify_items_due(self):
-        '''
-            Notifies the managers that the rental item is due/overdue
+			We'll put the logic here later.
+		'''
 
-            We will put the logic here a bit later. 
-        '''
+	def notify_items_due(self):
+		'''
+			Notifies the managers that the rental item is due/overdue
 
-    def print_rental_contract(self):
-        '''
-            Prints a rental contract for the given rental item. 
+			We will put the logic here a bit later.
+		'''
 
-            We will put the logic here a bit later. 
-        '''
+	def print_rental_contract(self):
+		'''
+			Prints a rental contract for the given rental item.
 
-    rental_contract = property(print_rental_contract)
+			We will put the logic here a bit later.
+		'''
+
+	rental_contract = property(print_rental_contract)
 
 #########################################################################################
 ####################################### SALE ITEM #######################################
@@ -507,10 +509,10 @@ class RentalItem(LineItem):
 # Sale items are the items that are SOLD, and inherit from LineItem. 
 
 class SaleItem(LineItem):
-    quantity = models.IntegerField(validators=[MinValueValidator(0)])
-    
-    # The product is the inventory item that is being sold
-    product = models.ForeignKey(Inventory)
+	quantity = models.IntegerField(validators=[MinValueValidator(0)])
 
-    def __str__(self):
-        return self.product.name
+	# The product is the inventory item that is being sold
+	product = models.ForeignKey(Inventory)
+
+	def __str__(self):
+		return self.product.name

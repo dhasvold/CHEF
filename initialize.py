@@ -119,20 +119,31 @@ address.ZIP = '84606'
 address.save()
 
 # Add a couple of guests
-for data in [
-	{'first_name':'Joseph', 'last_name':'Townson', 'email':'fake@fake.com', 'address':address, 'phone':'7134088245', 'security_question':'What is your name?', 'security_answer':'Joseph', 'username':'jobro1', },
-	{'first_name':'Sarah', 'last_name':'Townson', 'email':'fake@fake.com', 'address':address, 'phone':'7134088245', 'security_question':'What is your name?', 'security_answer':'Joseph', 'username':'sarahbro1', }
-]:
+user = mod.User()
 
-	user = mod.User()
+user.first_name = 'Joseph'
+user.last_name = 'Townson'
+user.email = 'fake@fake.com'
+user.address = address
+user.phone = '7134088245'
+user.security_question = 'What is your name'
+user.security_answer = 'You already know this, fool'
+user.username = 'jobro1'
 
-	for key in data:
+user.save()
+group.user_set.add(user)
 
-		setattr(user, key, data[key])
+user.first_name = 'Sarah'
+user.last_name = 'Samsonite'
+user.email ='fake@fake.com'
+user.address = address
+user.phone = '2813308004'
+user.security_question = 'What dat password be???'
+user.security_answer = 'Haha, got em'
+user.username = 'sarahbro1'
 
-	user.set_password('password')
-
-	user.save()
+user.save()
+group.user_set.add(user)
 
 #############################################################################
 ################################ DUMMY DATA #################################
@@ -357,6 +368,104 @@ wardrobe_item.start_year   = '1677-1-1'
 wardrobe_item.end_year     = '1678-1-1'
 
 wardrobe_item.save()
+
+################################ ADDRESS ####################################
+for data in [
+	{'address1':'1000 State St', 'city':'Orem','state':'UT','ZIP':'84606'},
+	{'address1':'1000 University Av', 'city':'Provo','state':'UT','ZIP':'84606'},
+	{'address1':'1000 Brown St', 'city':'Park City','state':'UT','ZIP':'84606'},
+]:
+	address = mod.Address()
+	for key in data:
+		setattr(address, key, data[key])
+
+	address.save()
+################################# VENUE #####################################
+for data in [
+	{'name':'Orem City Park', 'address':mod.Address.objects.get(address1='1000 State St')},
+	{'name':'Provo City Park', 'address':mod.Address.objects.get(address1='1000 University Av')},
+	{'name':'Park City Park', 'address':mod.Address.objects.get(address1='1000 Brown St')},
+]:
+	venue = mod.Venue()
+	for key in data:
+		setattr(venue, key, data[key])
+
+	venue.save()
+
+
+#############EVENTS###################################
+
+ev = mod.Event()
+ev.name = 'Revolutionary War Reenactment '
+ev.related_image = 'events/media/event_photos/revolutionary_war.jpg'
+ev.start_date = '2016-1-1'
+ev.end_date = '2016-2-1'
+
+ev.save()
+
+#############area1#############################
+
+ar = mod.Area()
+ar.name = 'Musket Station'
+ar.description = 'Here you can shoot some awesome, black-powder muskets'
+ar.event = ev
+
+ar.save()
+
+es = mod.ExpectedSaleItem()
+es.name = 'Muskets'
+es.related_image = 'events/media/ei_photos/musket.jpg'
+es.area = ar
+
+es.save()
+
+es = mod.ExpectedSaleItem()
+es.name = 'Gun Powder'
+es.related_image = 'events/media/ei_photos/gun_powder.jpg'
+es.area = ar
+
+es.save()
+
+################AREA2#############################33
+
+ar = mod.Area()
+ar.name = 'Sack Race'
+ar.description = 'For some reason we are going to have a sack race'
+ar.event = ev
+
+ar.save()
+
+es = mod.ExpectedSaleItem()
+es.name = 'Potato Sacks'
+es.related_image = 'events/media/ei_photos/potato_sacks.jpg'
+es.area = ar
+
+es.save()
+
+es = mod.ExpectedSaleItem()
+es.name = 'Special Shoes'
+es.related_image = 'events/media/ei_photos/special_shoes.jpg'
+es.area = ar
+
+es.save()
+
+##############EVENT2############################
+
+ev = mod.Event()
+ev.name = 'Artisan Breadmaking'
+ev.related_image = 'events/media/event_photos/artisan_breadmaking.jpg'
+ev.start_date = '2016-2-1'
+ev.end_date = '2016-3-1'
+
+ev.save()
+
+ev = mod.Event()
+ev.name = 'Native American Festival'
+ev.related_image = 'events/media/event_photos/native_american_festival.jpg'
+ev.start_date = '2016-3-1'
+ev.end_date = '2016-4-1'
+
+ev.save()
 
 #############################################################################
 ############################## TRANSACTIONS #################################

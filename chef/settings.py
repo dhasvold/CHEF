@@ -73,9 +73,9 @@ WSGI_APPLICATION = 'chef.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'chef',
+        'NAME': 'CHeF',
         'USER': 'postgres',
-        'PASSWORD': 'vivagines',
+        'PASSWORD': 'Iaam8590',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
