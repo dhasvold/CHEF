@@ -20,6 +20,7 @@ from django_mako_plus.controller.router import get_renderer
 from django.utils.translation import ugettext as _
 from base_app.CustomWidgets import CustomSelect, CustomRadioRenderer
 from django.contrib.auth import authenticate, login, logout
+import requests
 
 templater = get_renderer('account')
 
@@ -172,10 +173,42 @@ class PaymentForm(CustomForm):
 
 	## Form Inputs ##
 	credit_card_number = forms.CharField(required=True, max_length=100)
-	security_code = forms.IntegerField(required=True)
+	card_holder_name = forms.CharField(max_length=100)
+	card_company = forms.CharField(max_length=50)
+	cvc = forms.IntegerField(required=True)
 	expiration_month = forms.CharField(required=True, max_length=2)
 	expiration_year = forms.CharField(required=True, max_length=4)
 	ZIP = forms.CharField(required=True)
+
+	def clean(self):
+		API_URL = 'http://dithers.cs.byu.edu/iscore/api/v1/charges'
+		API_KEY = 'f1fd63257cb654eeb51223cf8faa3de1'
+
+		r = requests.post(API_URL, data = {
+			'apiKey': API_KEY,
+			'currency': 'usd',
+			'amount': self.request.urlparams[0],
+			'type': self.cleaned_data['card_company'],
+			'number': self.cleaned_data['credit_card_number'],
+			'exp_month': self.cleaned_data['expiration_month'],
+			'exp_year': self.cleaned_data['expiration_year'],
+			'cvc': self.cleaned_data['cvc'],
+			'name': self.cleaned_data['card_holder_name'],
+			'description': 'Charge for:' + self.cleaned_data['card_holder_name'],
+		})
+
+		# parse response to a dictionary
+		resp = r.json()
+		if 'error' in resp:
+			raise forms.ValidationError("ERROR: " + resp['error'])
+
+		else:
+			print(resp.keys())
+			print(resp['ID'])
+
+		return self.cleaned_data
+
+
 
 ##########################################################################################
 ################################# DEFAULT ACTION #########################################
@@ -305,9 +338,12 @@ def checkout(request):
 		if form.is_valid():
 
 			# Return user to list
-			return HttpResponseRedirect('/account/ShoppingCart.payment/')
+			return HttpResponseRedirect('/account/ShoppingCart.payment/' + request.urlparams[0])
 
 	params['form'] = form
+
+
+
 
 	return templater.render_to_response(request, 'ShippingInfo.html', params)
 

@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425771533.929509
+_modified_time = 1427776483.720008
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/account/templates/ShoppingCart.html'
+_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master\\account\\templates/ShoppingCart.html'
 _template_uri = 'ShoppingCart.html'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -29,9 +29,9 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         items = context.get('items', UNDEFINED)
-        int = context.get('int', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        int = context.get('int', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -48,9 +48,9 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         items = context.get('items', UNDEFINED)
-        int = context.get('int', UNDEFINED)
         def content():
             return render_content(context)
+        int = context.get('int', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\t<div class="full-width-container">\n\t\t\n')
@@ -77,7 +77,9 @@ def render_content(context,**pageargs):
         __M_writer('\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n')
         __M_writer('\n\t\t</div>\n')
         __M_writer('\n')
-        __M_writer('\t\t<div class="row">\n\t\t\t\n\t\t\t<div class="check_button_cont">\n\t\t\t\t\n\t\t\t\t<a class="button" href="/account/ShoppingCart.checkout">\n\t\t\t\t\t<paper-button raised class="create_button" id="checkout_button">Check Out</paper-button>\n\t\t\t\t</a>\n\n\t\t\t</div>\n\n\t\t</div>\n')
+        __M_writer('\t\t<div class="row">\n\t\t\t\n\t\t\t<div class="check_button_cont">\n\t\t\t\t\n\t\t\t\t<a class="button" href="/account/ShoppingCart.checkout/')
+        __M_writer(str( total ))
+        __M_writer('">\n\t\t\t\t\t<paper-button raised class="create_button" id="checkout_button">Check Out</paper-button>\n\t\t\t\t</a>\n\n\t\t\t</div>\n\n\t\t</div>\n')
         __M_writer('\n\t</div>\n')
         __M_writer('\n')
         return ''
@@ -87,6 +89,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/John/DevProjects/Repositories/chef/account/templates/ShoppingCart.html", "line_map": {"64": 43, "65": 43, "66": 46, "67": 46, "68": 49, "69": 49, "70": 52, "71": 52, "72": 55, "74": 55, "75": 57, "76": 65, "77": 65, "78": 72, "79": 75, "80": 77, "81": 89, "82": 92, "88": 82, "27": 0, "36": 7, "37": 9, "47": 11, "55": 11, "56": 14, "57": 17, "58": 20, "59": 39, "61": 39, "62": 40, "63": 41}, "source_encoding": "ascii", "uri": "ShoppingCart.html"}
+{"line_map": {"64": 43, "65": 43, "66": 46, "67": 46, "68": 49, "69": 49, "70": 52, "71": 52, "72": 55, "74": 55, "75": 57, "76": 65, "77": 65, "78": 72, "79": 75, "80": 77, "81": 81, "82": 81, "83": 89, "84": 92, "90": 84, "27": 0, "36": 7, "37": 9, "47": 11, "55": 11, "56": 14, "57": 17, "58": 20, "59": 39, "61": 39, "62": 40, "63": 41}, "filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\account\\templates/ShoppingCart.html", "uri": "ShoppingCart.html", "source_encoding": "ascii"}
 __M_END_METADATA
 """

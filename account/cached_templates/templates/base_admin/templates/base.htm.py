@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425506174.321154
+_modified_time = 1427774496.677328
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/base_admin/templates/base.htm'
+_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master/base_admin/templates/base.htm'
 _template_uri = '/base_admin/templates/base.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -65,6 +65,6 @@ def render_footer_links(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/John/DevProjects/Repositories/chef/base_admin/templates/base.htm", "source_encoding": "ascii", "uri": "/base_admin/templates/base.htm", "line_map": {"34": 8, "35": 10, "40": 56, "66": 60, "46": 13, "59": 52, "52": 13, "53": 15, "54": 18, "55": 27, "56": 29, "57": 40, "58": 42, "27": 0, "60": 55}}
+{"filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master/base_admin/templates/base.htm", "source_encoding": "ascii", "line_map": {"34": 8, "35": 10, "40": 56, "66": 60, "46": 13, "59": 52, "52": 13, "53": 15, "54": 18, "55": 27, "56": 29, "57": 40, "58": 42, "27": 0, "60": 55}, "uri": "/base_admin/templates/base.htm"}
 __M_END_METADATA
 """

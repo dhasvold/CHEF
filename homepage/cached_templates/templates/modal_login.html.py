@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1426620135.918468
+_modified_time = 1427774455.345959
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/homepage/templates/modal_login.html'
+_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master\\homepage\\templates/modal_login.html'
 _template_uri = 'modal_login.html'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -28,12 +28,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        form = context.get('form', UNDEFINED)
         def extra_links():
             return render_extra_links(context._locals(__M_locals))
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -69,9 +69,9 @@ def render_extra_links(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context)
-        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n\t')
         __M_writer(str( form.as_login() ))
@@ -84,6 +84,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/John/DevProjects/Repositories/chef/homepage/templates/modal_login.html", "source_encoding": "ascii", "line_map": {"69": 18, "38": 8, "39": 10, "44": 16, "76": 18, "77": 20, "78": 20, "79": 23, "85": 79, "54": 12, "27": 0, "61": 12, "62": 14, "63": 14}, "uri": "modal_login.html"}
+{"filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\homepage\\templates/modal_login.html", "source_encoding": "ascii", "line_map": {"69": 18, "38": 8, "39": 10, "44": 16, "76": 18, "77": 20, "78": 20, "79": 23, "85": 79, "54": 12, "27": 0, "61": 12, "62": 14, "63": 14}, "uri": "modal_login.html"}
 __M_END_METADATA
 """

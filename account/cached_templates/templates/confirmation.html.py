@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425797409.423593
+_modified_time = 1427774849.299311
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/account/templates/confirmation.html'
+_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master\\account\\templates/confirmation.html'
 _template_uri = 'confirmation.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['tab_title', 'content', 'page_title']
+_exports = ['content', 'page_title', 'tab_title']
 
 
 def _mako_get_namespace(context, name):
@@ -28,12 +28,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def tab_title():
-            return render_tab_title(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
         def page_title():
             return render_page_title(context._locals(__M_locals))
+        def tab_title():
+            return render_tab_title(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -46,18 +46,6 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_tab_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def tab_title():
-            return render_tab_title(context)
-        __M_writer = context.writer()
-        __M_writer('\n  \tOrder Confirmation\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -104,8 +92,20 @@ def render_page_title(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_tab_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def tab_title():
+            return render_tab_title(context)
+        __M_writer = context.writer()
+        __M_writer('\n  \tOrder Confirmation\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"source_encoding": "ascii", "filename": "/Users/John/DevProjects/Repositories/chef/account/templates/confirmation.html", "uri": "confirmation.html", "line_map": {"66": 15, "74": 15, "75": 18, "80": 28, "81": 30, "82": 32, "83": 35, "84": 43, "85": 46, "86": 49, "87": 53, "27": 0, "93": 18, "99": 18, "100": 22, "101": 26, "38": 7, "39": 9, "107": 101, "44": 13, "54": 11, "60": 11}}
+{"source_encoding": "ascii", "filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\account\\templates/confirmation.html", "line_map": {"68": 28, "69": 30, "70": 32, "71": 35, "72": 43, "73": 46, "74": 49, "75": 53, "81": 18, "87": 18, "88": 22, "89": 26, "27": 0, "95": 11, "101": 11, "38": 7, "39": 9, "107": 101, "44": 13, "54": 15, "62": 15, "63": 18}, "uri": "confirmation.html"}
 __M_END_METADATA
 """

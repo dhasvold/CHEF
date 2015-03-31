@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425673945.860134
+_modified_time = 1427774493.880625
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/base_app/templates/base_ajax.htm'
+_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master/base_app/templates/base_ajax.htm'
 _template_uri = '/base_app/templates/base_ajax.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['extra_links', 'paper_elements_import', 'content']
+_exports = ['paper_elements_import', 'extra_links', 'content']
 
 
 from django_mako_plus.controller import static_files 
@@ -19,13 +19,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        def content():
+            return render_content(context._locals(__M_locals))
+        def paper_elements_import():
+            return render_paper_elements_import(context._locals(__M_locals))
         def extra_links():
             return render_extra_links(context._locals(__M_locals))
         request = context.get('request', UNDEFINED)
-        def paper_elements_import():
-            return render_paper_elements_import(context._locals(__M_locals))
-        def content():
-            return render_content(context._locals(__M_locals))
         self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
@@ -59,11 +59,11 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_extra_links(context,**pageargs):
+def render_paper_elements_import(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def extra_links():
-            return render_extra_links(context)
+        def paper_elements_import():
+            return render_paper_elements_import(context)
         __M_writer = context.writer()
         __M_writer('\n\n')
         return ''
@@ -71,11 +71,11 @@ def render_extra_links(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_paper_elements_import(context,**pageargs):
+def render_extra_links(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def paper_elements_import():
-            return render_paper_elements_import(context)
+        def extra_links():
+            return render_extra_links(context)
         __M_writer = context.writer()
         __M_writer('\n\n')
         return ''
@@ -97,6 +97,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"32": 6, "33": 7, "98": 92, "68": 13, "37": 7, "38": 10, "39": 10, "80": 18, "92": 23, "74": 18, "44": 15, "16": 6, "49": 20, "18": 0, "54": 25, "55": 28, "56": 28, "86": 23, "62": 13, "31": 4}, "source_encoding": "ascii", "uri": "/base_app/templates/base_ajax.htm", "filename": "/Users/John/DevProjects/Repositories/chef/base_app/templates/base_ajax.htm"}
+{"filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master/base_app/templates/base_ajax.htm", "source_encoding": "ascii", "line_map": {"32": 6, "33": 7, "98": 92, "68": 18, "37": 7, "38": 10, "39": 10, "80": 13, "92": 23, "74": 13, "44": 15, "16": 6, "49": 20, "18": 0, "54": 25, "55": 28, "56": 28, "86": 23, "62": 18, "31": 4}, "uri": "/base_app/templates/base_ajax.htm"}
 __M_END_METADATA
 """
