@@ -65,15 +65,52 @@
     %for area in areas:
         <div id="spacer">
             <h2>${ area.name }</h2>
+            <b>Place Number:</b> ${ area.place_number }
+            <br>
+            <br>
             <b>Description:</b> ${ area.description }
             <br>
+            <br>
             <b>Products for sale:</b>
+            <br>
+            <br>
+            <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                High Price
+                            </th>
+                            <th>
+                                Low Price
+                            </th>
+                            <th>
+                                Photo
+                            </th>
+                        </tr>
+                    </thead>
             %for item in areas[area]:
-            <div id="image">
-                <img src="${ STATIC_URL}${ item.related_image }"
-            </div>
-            %endfor
+                    <tbody>
+                        <tr>
+                            <td>
+                                ${ item.name }
+                            </td>
+                             <td>
+                                ${ item.high_price }
+                            </td>
+                             <td>
+                                ${ item.low_price }
+                            </td>
+                             <td>
+                               <img src="${ STATIC_URL}${ item.related_image }">
+                            </td>
+                        </tr>
 
+                    </tbody>
+            %endfor
+            </table>
         </div>
     %endfor
 
