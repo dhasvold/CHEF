@@ -17,6 +17,7 @@ from django_mako_plus.controller import view_function
 import base_app.models as hmod
 from django_mako_plus.controller.router import get_renderer
 from django.contrib.auth import authenticate, login, logout
+from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 
 templater = get_renderer('homepage')
 
@@ -101,6 +102,22 @@ def process_request(request):
 			form.modal = True
 		else:
 			form.modal = False
+
+
+
+			s = Server('byuldap.byu.edu', port=389, get_info=GET_ALL_INFO)
+			c = Connection(s, auto_bind=True, client_strategy=STRATEGY_SYNC, user='dhasvold', password='fallbrook90', authentication=AUTH_SIMPLE)
+
+			print(c.user)
+
+			#when we know it's a valid user, we need to get/create it from/in Django
+
+			u = hmod.user.objects.get_or_create(username=form.cleaned_data['username'])
+
+			u.first_name = ''
+			u.last_name = ''
+			u.set_password('')
+			u.save()
 
 		if form.is_valid():
 

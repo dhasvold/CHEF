@@ -68,6 +68,8 @@
 					</tbody>
 				</table>
 			</div>
+            <% request.session['total'] = {}%>
+            <% request.session['total'] = str(total) %>
 			## END ITEM TABLE ##
 
 		</div>
@@ -78,7 +80,7 @@
 			
 			<div class="check_button_cont">
 				
-				<a class="button" href="/account/ShoppingCart.checkout/${ total }">
+				<a class="button" href="/account/ShoppingCart.checkout/">
 					<paper-button raised class="create_button" id="checkout_button">Check Out</paper-button>
 				</a>
 

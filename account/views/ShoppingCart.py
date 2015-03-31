@@ -187,7 +187,7 @@ class PaymentForm(CustomForm):
 		r = requests.post(API_URL, data = {
 			'apiKey': API_KEY,
 			'currency': 'usd',
-			'amount': self.request.urlparams[0],
+			'amount': self.request.session['total'],
 			'type': self.cleaned_data['card_company'],
 			'number': self.cleaned_data['credit_card_number'],
 			'exp_month': self.cleaned_data['expiration_month'],
@@ -199,6 +199,7 @@ class PaymentForm(CustomForm):
 
 		# parse response to a dictionary
 		resp = r.json()
+
 		if 'error' in resp:
 			raise forms.ValidationError("ERROR: " + resp['error'])
 
@@ -338,7 +339,7 @@ def checkout(request):
 		if form.is_valid():
 
 			# Return user to list
-			return HttpResponseRedirect('/account/ShoppingCart.payment/' + request.urlparams[0])
+			return HttpResponseRedirect('/account/ShoppingCart.payment/')
 
 	params['form'] = form
 
