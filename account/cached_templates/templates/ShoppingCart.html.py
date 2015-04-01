@@ -4,7 +4,11 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
+<<<<<<< HEAD
 _modified_time = 1427919156.7993147
+=======
+_modified_time = 1427842114.705181
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
 _enable_loop = True
 _template_filename = '/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html'
 _template_uri = 'ShoppingCart.html'
@@ -29,11 +33,18 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         int = context.get('int', UNDEFINED)
+<<<<<<< HEAD
         items = context.get('items', UNDEFINED)
+=======
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
         request = context.get('request', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         str = context.get('str', UNDEFINED)
+<<<<<<< HEAD
+=======
+        items = context.get('items', UNDEFINED)
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -50,11 +61,18 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         int = context.get('int', UNDEFINED)
+<<<<<<< HEAD
         items = context.get('items', UNDEFINED)
+=======
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
         request = context.get('request', UNDEFINED)
         def content():
             return render_content(context)
         str = context.get('str', UNDEFINED)
+<<<<<<< HEAD
+=======
+        items = context.get('items', UNDEFINED)
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\t<div class="full-width-container">\n\t\t\n')
@@ -78,6 +96,7 @@ def render_content(context,**pageargs):
             __M_writer('\n')
         __M_writer('\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\tTotal Price\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th class="total_price">\n\t\t\t\t\t\t\t\t')
         __M_writer(str( total ))
+<<<<<<< HEAD
         __M_writer('\n                                ')
         request.session['total'] = {} 
         
@@ -85,6 +104,15 @@ def render_content(context,**pageargs):
         request.session['total'] = str(total) 
         
         __M_writer('\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n')
+=======
+        __M_writer('\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n            ')
+        request.session['total'] = {}
+        
+        __M_writer('\n            ')
+        request.session['total'] = str(total) 
+        
+        __M_writer('\n')
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
         __M_writer('\n\t\t</div>\n')
         __M_writer('\n')
         __M_writer('\t\t<div class="row">\n\t\t\t\n\t\t\t<div class="check_button_cont">\n\t\t\t\t\n\t\t\t\t<a class="button" href="/account/ShoppingCart.checkout/">\n\t\t\t\t\t<paper-button raised class="create_button" id="checkout_button">Check Out</paper-button>\n\t\t\t\t</a>\n\n\t\t\t</div>\n\n\t\t</div>\n')
@@ -97,6 +125,10 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
+<<<<<<< HEAD
 {"line_map": {"65": 39, "66": 40, "67": 41, "68": 43, "69": 43, "70": 46, "71": 46, "72": 49, "73": 49, "74": 52, "75": 52, "76": 55, "78": 55, "79": 57, "80": 65, "81": 65, "82": 66, "84": 66, "85": 67, "87": 67, "88": 74, "89": 77, "90": 79, "27": 0, "92": 94, "98": 92, "91": 91, "38": 7, "39": 9, "49": 11, "59": 11, "60": 14, "61": 17, "62": 20, "63": 39}, "source_encoding": "ascii", "uri": "ShoppingCart.html", "filename": "/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html"}
+=======
+{"uri": "ShoppingCart.html", "line_map": {"65": 39, "66": 40, "67": 41, "68": 43, "69": 43, "70": 46, "71": 46, "72": 49, "73": 49, "74": 52, "75": 52, "76": 55, "78": 55, "79": 57, "80": 65, "81": 65, "82": 71, "84": 71, "85": 72, "87": 72, "88": 74, "89": 77, "90": 79, "27": 0, "92": 94, "98": 92, "91": 91, "38": 7, "39": 9, "49": 11, "59": 11, "60": 14, "61": 17, "62": 20, "63": 39}, "filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\account\\templates/ShoppingCart.html", "source_encoding": "ascii"}
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
 __M_END_METADATA
 """

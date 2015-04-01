@@ -201,7 +201,10 @@ class PaymentForm(CustomForm):
 		# parse response to a dictionary
 		resp = r.json()
 
+<<<<<<< HEAD
 		print(self.request.session['total'])
+=======
+>>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
 		if 'error' in resp:
 			raise forms.ValidationError("ERROR: " + resp['error'])
 
