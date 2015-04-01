@@ -34,8 +34,8 @@ import subprocess
 
 # Drop database, recreate it, migrate it
 cursor = connection.cursor()
-cursor.execute('DROP SCHEMA PUBLIC CASCADE')
-cursor.execute('CREATE SCHEMA PUBLIC')
+cursor.execute('DROP SCHEMA PUBLIC2 CASCADE')
+cursor.execute('CREATE SCHEMA PUBLIC2')
 subprocess.call([sys.executable, 'manage.py', 'migrate'])
 
 #############################################################################

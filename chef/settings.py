@@ -29,6 +29,16 @@ ALLOWED_HOSTS = []
 # Custom User Class
 AUTH_USER_MODEL = 'base_app.User'
 
+
+
+### For with outlook.
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'derik.hasvold.backup@gmail.com'
+EMAIL_HOST_PASSWORD = 'Getmoney$'
+EMAIL_USE_TLS = True
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -73,8 +83,8 @@ WSGI_APPLICATION = 'chef.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'CHeF',
-        'USER': 'postgres',
+        'NAME': 'chef',
+        'USER': 'dhasvold',
         'PASSWORD': 'Iaam8590',
         'HOST': '127.0.0.1',
         'PORT': '5432'

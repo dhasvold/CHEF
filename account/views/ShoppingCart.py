@@ -21,6 +21,7 @@ from django.utils.translation import ugettext as _
 from base_app.CustomWidgets import CustomSelect, CustomRadioRenderer
 from django.contrib.auth import authenticate, login, logout
 import requests
+from django.core.mail import send_mail
 
 templater = get_renderer('account')
 
@@ -187,7 +188,7 @@ class PaymentForm(CustomForm):
 		r = requests.post(API_URL, data = {
 			'apiKey': API_KEY,
 			'currency': 'usd',
-			'amount': self.request.urlparams[0],
+			'amount': self.request.session['total'],
 			'type': self.cleaned_data['card_company'],
 			'number': self.cleaned_data['credit_card_number'],
 			'exp_month': self.cleaned_data['expiration_month'],
@@ -199,6 +200,8 @@ class PaymentForm(CustomForm):
 
 		# parse response to a dictionary
 		resp = r.json()
+
+		print(self.request.session['total'])
 		if 'error' in resp:
 			raise forms.ValidationError("ERROR: " + resp['error'])
 
@@ -338,7 +341,7 @@ def checkout(request):
 		if form.is_valid():
 
 			# Return user to list
-			return HttpResponseRedirect('/account/ShoppingCart.payment/' + request.urlparams[0])
+			return HttpResponseRedirect('/account/ShoppingCart.payment/')
 
 	params['form'] = form
 
@@ -391,5 +394,27 @@ def confirmation(request):
 
 	# Define the view bag
 	params={}
+
+	items = []
+	quantity = []
+
+	for item_id in request.session['cart']:
+
+		try:
+			items.append(hmod.Inventory.objects.get(id=item_id))
+		except:
+			HttpResponse('Item does not exist')
+
+		quantity.append(request.session['cart'][item_id])
+
+	params['items'] = items
+	params['quantity'] = quantity
+
+
+	subject = "Receipt for your purchase"
+
+	body = templater.render(request, 'receipt.html', params)
+
+	send_mail(subject, body, 'derik.hasvold.backup@gmail.com', [request.user.email], html_message = body, fail_silently = False)
 
 	return templater.render_to_response(request, 'confirmation.html', params)

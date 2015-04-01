@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425692781.240258
+_modified_time = 1427921676.7108376
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/account/templates/NewUser.html'
+_template_filename = '/home/dhasvold/PycharmProjects/chef-master/account/templates/NewUser.html'
 _template_uri = 'NewUser.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content', 'page_title', 'tab_title']
+_exports = ['tab_title', 'content', 'page_title']
 
 
 def _mako_get_namespace(context, name):
@@ -28,13 +28,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        def tab_title():
+            return render_tab_title(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
         def page_title():
             return render_page_title(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
-        def tab_title():
-            return render_tab_title(context._locals(__M_locals))
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -48,6 +48,18 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_tab_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def tab_title():
+            return render_tab_title(context)
+        __M_writer = context.writer()
+        __M_writer('\n  \tNew User\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -100,20 +112,8 @@ def render_page_title(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_tab_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def tab_title():
-            return render_tab_title(context)
-        __M_writer = context.writer()
-        __M_writer('\n  \tNew User\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"line_map": {"66": 15, "71": 23, "72": 28, "73": 31, "74": 32, "75": 32, "76": 35, "77": 37, "78": 40, "79": 42, "80": 44, "81": 44, "82": 48, "83": 51, "84": 53, "85": 57, "27": 0, "97": 19, "91": 19, "103": 11, "40": 7, "41": 9, "109": 11, "46": 13, "115": 109, "56": 15}, "source_encoding": "ascii", "filename": "/Users/John/DevProjects/Repositories/chef/account/templates/NewUser.html", "uri": "NewUser.html"}
+{"filename": "/home/dhasvold/PycharmProjects/chef-master/account/templates/NewUser.html", "line_map": {"68": 15, "78": 15, "83": 23, "84": 28, "85": 31, "86": 32, "87": 32, "88": 35, "89": 37, "90": 40, "91": 42, "92": 44, "93": 44, "94": 48, "95": 51, "96": 53, "97": 57, "27": 0, "103": 19, "40": 7, "41": 9, "109": 19, "46": 13, "115": 109, "56": 11, "62": 11}, "uri": "NewUser.html", "source_encoding": "ascii"}
 __M_END_METADATA
 """
