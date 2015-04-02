@@ -72,21 +72,24 @@
 		## RIGHT COLUMN ##
 		<div class="col-md-3">
 
-			## START DATE FIELD ##
+			## Availability FIELD ##
 			<div class="start_date">
-				<paper-input-decorator class="short" floatingLabel label="Rental Start Date">
-					<input is="core-input" id="start_date" class="datetimepicker" value=""/>
-				</paper-input-decorator>
+				<h4>Availability</h4>
+				%if item.quantity_on_hand > 0:
+                    <p>Available!</p>
+                %else:
+                <p>Not Available</p>
+                %endif
 			</div>
-			## END START DATE FIELD ##
+            <div class="spacer"></div>
 
-			## END DATE FIELD ##
+            ## END DATE FIELD ##
 			<div class="end_date">
-				<paper-input-decorator class="short" floatingLabel label="Rental End Date">
-					<input is="core-input" id="end_date" class="datetimepicker" value=""/>
+				<paper-input-decorator class="short" floatingLabel label="Rental Length (Days)">
+					<input is="core-input" id="end_date"  value=""/>
 				</paper-input-decorator>
 			</div>
-			## END END DATE FIELD ##
+           ## END END DATE FIELD ##
 
 			## ADD TO CART BUTTON ##
 			<paper-button raised data-pid="${ item.id }" class="create_button add_button">Add to Cart</paper-button>

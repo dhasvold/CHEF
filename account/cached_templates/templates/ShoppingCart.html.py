@@ -4,11 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-<<<<<<< HEAD
-_modified_time = 1427919156.7993147
-=======
-_modified_time = 1427842114.705181
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
+_modified_time = 1428016248.039716
 _enable_loop = True
 _template_filename = '/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html'
 _template_uri = 'ShoppingCart.html'
@@ -32,19 +28,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        int = context.get('int', UNDEFINED)
-<<<<<<< HEAD
         items = context.get('items', UNDEFINED)
-=======
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
-        request = context.get('request', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         str = context.get('str', UNDEFINED)
-<<<<<<< HEAD
-=======
-        items = context.get('items', UNDEFINED)
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
+        int = context.get('int', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -60,19 +50,13 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        int = context.get('int', UNDEFINED)
-<<<<<<< HEAD
         items = context.get('items', UNDEFINED)
-=======
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
-        request = context.get('request', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         def content():
             return render_content(context)
         str = context.get('str', UNDEFINED)
-<<<<<<< HEAD
-=======
-        items = context.get('items', UNDEFINED)
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
+        int = context.get('int', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\t<div class="full-width-container">\n\t\t\n')
@@ -94,17 +78,39 @@ def render_content(context,**pageargs):
             total += (item.specs.price * items[item]) 
             
             __M_writer('\n')
-        __M_writer('\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\tTotal Price\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th class="total_price">\n\t\t\t\t\t\t\t\t')
+        __M_writer('\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n            ')
+        request.session['total'] = {}
+        
+        __M_writer('\n            ')
+        request.session['total'] = str(total) 
+        
+        __M_writer('\n')
+        __M_writer('            <div class="spacer"></div>\n\n\n\n')
+        __M_writer('\t\t\t<div class="table-responsive">\n\t\t\t\t<table class="table table-hover table-bordered">\n\t\t\t\t\t<thead>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\tRental\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th class="quantity">\n\t\t\t\t\t\t\t\tRental Length\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th class="price">\n\t\t\t\t\t\t\t\tRental Price\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\tActions\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</thead>\n\t\t\t\t\t<tbody>\n')
+        for item1 in rentals:
+            __M_writer('\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t')
+            __M_writer(str( item1.specs.name ))
+            __M_writer('\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<td class="quantity">\n\t\t\t\t\t\t\t\t\t')
+            __M_writer(str( rentals[item1] + ' ' ))
+            __M_writer(' days\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<td class="price">\n                                    ')
+            price = item1.standard_rental_price * int(rentals[item1]) 
+            
+            __M_writer('\n\t\t\t\t\t\t\t\t\t')
+            __M_writer(str( price ))
+            __M_writer('\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t<paper-button raised data-id="')
+            __M_writer(str( item1.id ))
+            __M_writer('" class="delete_button">Remove</paper-button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t')
+            total += (price) 
+            
+            __M_writer('\n')
+        __M_writer('\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\tTotal Price\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th>\n\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th class="total_price">\n\t\t\t\t\t\t\t\t')
         __M_writer(str( total ))
-<<<<<<< HEAD
         __M_writer('\n                                ')
         request.session['total'] = {} 
         
         __M_writer('\n                                ')
         request.session['total'] = str(total) 
         
-        __M_writer('\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n')
-=======
         __M_writer('\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n            ')
         request.session['total'] = {}
         
@@ -112,7 +118,6 @@ def render_content(context,**pageargs):
         request.session['total'] = str(total) 
         
         __M_writer('\n')
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
         __M_writer('\n\t\t</div>\n')
         __M_writer('\n')
         __M_writer('\t\t<div class="row">\n\t\t\t\n\t\t\t<div class="check_button_cont">\n\t\t\t\t\n\t\t\t\t<a class="button" href="/account/ShoppingCart.checkout/">\n\t\t\t\t\t<paper-button raised class="create_button" id="checkout_button">Check Out</paper-button>\n\t\t\t\t</a>\n\n\t\t\t</div>\n\n\t\t</div>\n')
@@ -125,10 +130,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-<<<<<<< HEAD
-{"line_map": {"65": 39, "66": 40, "67": 41, "68": 43, "69": 43, "70": 46, "71": 46, "72": 49, "73": 49, "74": 52, "75": 52, "76": 55, "78": 55, "79": 57, "80": 65, "81": 65, "82": 66, "84": 66, "85": 67, "87": 67, "88": 74, "89": 77, "90": 79, "27": 0, "92": 94, "98": 92, "91": 91, "38": 7, "39": 9, "49": 11, "59": 11, "60": 14, "61": 17, "62": 20, "63": 39}, "source_encoding": "ascii", "uri": "ShoppingCart.html", "filename": "/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html"}
-=======
-{"uri": "ShoppingCart.html", "line_map": {"65": 39, "66": 40, "67": 41, "68": 43, "69": 43, "70": 46, "71": 46, "72": 49, "73": 49, "74": 52, "75": 52, "76": 55, "78": 55, "79": 57, "80": 65, "81": 65, "82": 71, "84": 71, "85": 72, "87": 72, "88": 74, "89": 77, "90": 79, "27": 0, "92": 94, "98": 92, "91": 91, "38": 7, "39": 9, "49": 11, "59": 11, "60": 14, "61": 17, "62": 20, "63": 39}, "filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\account\\templates/ShoppingCart.html", "source_encoding": "ascii"}
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
+{"line_map": {"131": 125, "27": 0, "39": 7, "40": 9, "50": 11, "61": 11, "62": 14, "63": 17, "64": 20, "65": 39, "67": 39, "68": 40, "69": 41, "70": 43, "71": 43, "72": 46, "73": 46, "74": 49, "75": 49, "76": 52, "77": 52, "78": 55, "80": 55, "81": 57, "82": 60, "84": 60, "85": 61, "87": 61, "88": 63, "89": 68, "90": 87, "91": 88, "92": 90, "93": 90, "94": 93, "95": 93, "96": 96, "98": 96, "99": 97, "100": 97, "101": 100, "102": 100, "103": 103, "105": 103, "106": 105, "107": 113, "108": 113, "109": 114, "111": 114, "112": 115, "114": 115, "115": 121, "117": 121, "118": 122, "120": 122, "121": 124, "122": 127, "123": 129, "124": 141, "125": 144}, "uri": "ShoppingCart.html", "filename": "/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html", "source_encoding": "ascii"}
 __M_END_METADATA
 """

@@ -54,12 +54,60 @@
 							</tr>
 							<% total += (item.specs.price * items[item]) %>
 						%endfor
+					</tbody>
+				</table>
+			</div>
+            <% request.session['total'] = {}%>
+            <% request.session['total'] = str(total) %>
+			## END ITEM TABLE ##
+            <div class="spacer"></div>
+
+
+
+            ## Rental TABLE ##
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>
+								Rental
+							</th>
+							<th class="quantity">
+								Rental Length
+							</th>
+							<th class="price">
+								Rental Price
+							</th>
+							<th>
+								Actions
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						%for item1 in rentals:
+							<tr>
+								<td>
+									${ item1.specs.name }
+								</td>
+								<td class="quantity">
+									${ rentals[item1] + ' ' } days
+								</td>
+								<td class="price">
+                                    <% price = item1.standard_rental_price * int(rentals[item1]) %>
+									${ price }
+								</td>
+								<td>
+									<paper-button raised data-id="${ item1.id }" class="delete_button">Remove</paper-button>
+								</td>
+							</tr>
+							<% total += (price) %>
+						%endfor
 						<tr>
 							<th>
 								Total Price
 							</th>
 							<th>
-								
+
 							</th>
 							<th class="total_price">
 								${ total }
@@ -72,7 +120,7 @@
 			</div>
             <% request.session['total'] = {}%>
             <% request.session['total'] = str(total) %>
-			## END ITEM TABLE ##
+			## END RENTAL TABLE ##
 
 		</div>
 		## END MAIN ROW ##

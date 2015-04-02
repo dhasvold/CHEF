@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1426904638.070237
+_modified_time = 1428002067.7728677
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/rentals/templates/rentals.html'
+_template_filename = '/home/dhasvold/PycharmProjects/chef-master/rentals/templates/rentals.html'
 _template_uri = 'rentals.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content', 'tab_title', 'page_title']
+_exports = ['tab_title', 'content', 'page_title']
 
 
 def _mako_get_namespace(context, name):
@@ -28,14 +28,14 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def content():
-            return render_content(context._locals(__M_locals))
-        non_wardrobe = context.get('non_wardrobe', UNDEFINED)
         def tab_title():
             return render_tab_title(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        non_wardrobe = context.get('non_wardrobe', UNDEFINED)
         def page_title():
             return render_page_title(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def content():
+            return render_content(context._locals(__M_locals))
         wardrobe = context.get('wardrobe', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -54,13 +54,25 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_tab_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def tab_title():
+            return render_tab_title(context)
+        __M_writer = context.writer()
+        __M_writer('\n  \tRentals\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def content():
             return render_content(context)
         non_wardrobe = context.get('non_wardrobe', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def page_title():
             return render_page_title(context)
         wardrobe = context.get('wardrobe', UNDEFINED)
@@ -122,18 +134,6 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_tab_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def tab_title():
-            return render_tab_title(context)
-        __M_writer = context.writer()
-        __M_writer('\n  \tRentals\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_page_title(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -152,6 +152,6 @@ def render_page_title(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"131": 11, "137": 18, "143": 18, "144": 22, "145": 26, "146": 28, "147": 32, "153": 147, "27": 0, "41": 7, "42": 9, "47": 13, "57": 15, "68": 15, "69": 18, "74": 34, "75": 36, "76": 38, "77": 40, "78": 42, "79": 43, "80": 47, "81": 47, "82": 47, "83": 47, "84": 47, "85": 49, "86": 53, "87": 53, "88": 53, "89": 53, "90": 53, "91": 53, "92": 55, "93": 60, "94": 62, "95": 64, "96": 66, "97": 68, "98": 70, "99": 72, "100": 74, "101": 75, "102": 79, "103": 79, "104": 79, "105": 79, "106": 79, "107": 81, "108": 85, "109": 85, "110": 85, "111": 85, "112": 85, "113": 85, "114": 87, "115": 92, "116": 94, "117": 96, "118": 98, "119": 102, "125": 11}, "uri": "rentals.html", "source_encoding": "ascii", "filename": "/Users/John/DevProjects/Repositories/chef/rentals/templates/rentals.html"}
+{"line_map": {"128": 94, "129": 96, "130": 98, "131": 102, "137": 18, "143": 18, "144": 22, "145": 26, "146": 28, "147": 32, "153": 147, "27": 0, "41": 7, "42": 9, "47": 13, "57": 11, "63": 11, "69": 15, "80": 15, "81": 18, "86": 34, "87": 36, "88": 38, "89": 40, "90": 42, "91": 43, "92": 47, "93": 47, "94": 47, "95": 47, "96": 47, "97": 49, "98": 53, "99": 53, "100": 53, "101": 53, "102": 53, "103": 53, "104": 55, "105": 60, "106": 62, "107": 64, "108": 66, "109": 68, "110": 70, "111": 72, "112": 74, "113": 75, "114": 79, "115": 79, "116": 79, "117": 79, "118": 79, "119": 81, "120": 85, "121": 85, "122": 85, "123": 85, "124": 85, "125": 85, "126": 87, "127": 92}, "source_encoding": "ascii", "uri": "rentals.html", "filename": "/home/dhasvold/PycharmProjects/chef-master/rentals/templates/rentals.html"}
 __M_END_METADATA
 """

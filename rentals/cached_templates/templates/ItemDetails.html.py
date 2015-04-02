@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1426908406.207882
+_modified_time = 1428014805.2545855
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/rentals/templates/ItemDetails.html'
+_template_filename = '/home/dhasvold/PycharmProjects/chef-master/rentals/templates/ItemDetails.html'
 _template_uri = 'ItemDetails.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['tab_title', 'page_title', 'content']
+_exports = ['page_title', 'content', 'tab_title']
 
 
 def _mako_get_namespace(context, name):
@@ -28,13 +28,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def tab_title():
-            return render_tab_title(context._locals(__M_locals))
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def content():
-            return render_content(context._locals(__M_locals))
         def page_title():
             return render_page_title(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
+        def tab_title():
+            return render_tab_title(context._locals(__M_locals))
         item = context.get('item', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -48,21 +48,6 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_tab_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def tab_title():
-            return render_tab_title(context)
-        item = context.get('item', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n  \t')
-        __M_writer(str( item.specs.name ))
-        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -89,10 +74,10 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def content():
-            return render_content(context)
         def page_title():
             return render_page_title(context)
+        def content():
+            return render_content(context)
         item = context.get('item', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -126,9 +111,13 @@ def render_content(context,**pageargs):
         __M_writer('\n\t\t</div>\n')
         __M_writer('\n')
         __M_writer('\t\t<div class="col-md-3">\n\n')
-        __M_writer('\t\t\t<div class="start_date">\n\t\t\t\t<paper-input-decorator class="short" floatingLabel label="Rental Start Date">\n\t\t\t\t\t<input is="core-input" id="start_date" class="datetimepicker" value=""/>\n\t\t\t\t</paper-input-decorator>\n\t\t\t</div>\n')
-        __M_writer('\n')
-        __M_writer('\t\t\t<div class="end_date">\n\t\t\t\t<paper-input-decorator class="short" floatingLabel label="Rental End Date">\n\t\t\t\t\t<input is="core-input" id="end_date" class="datetimepicker" value=""/>\n\t\t\t\t</paper-input-decorator>\n\t\t\t</div>\n')
+        __M_writer('\t\t\t<div class="start_date">\n\t\t\t\t<h4>Availability</h4>\n')
+        if item.quantity_on_hand > 0:
+            __M_writer('                    <p>Available!</p>\n')
+        else:
+            __M_writer('                <p>Not Available</p>\n')
+        __M_writer('\t\t\t</div>\n            <div class="spacer"></div>\n\n')
+        __M_writer('\t\t\t<div class="end_date">\n\t\t\t\t<paper-input-decorator class="short" floatingLabel label="Rental Length (Days)">\n\t\t\t\t\t<input is="core-input" id="end_date"  value=""/>\n\t\t\t\t</paper-input-decorator>\n\t\t\t</div>\n')
         __M_writer('\n')
         __M_writer('\t\t\t<paper-button raised data-pid="')
         __M_writer(str( item.id ))
@@ -143,8 +132,23 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_tab_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def tab_title():
+            return render_tab_title(context)
+        item = context.get('item', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n  \t')
+        __M_writer(str( item.specs.name ))
+        __M_writer('\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/John/DevProjects/Repositories/chef/rentals/templates/ItemDetails.html", "uri": "ItemDetails.html", "source_encoding": "ascii", "line_map": {"128": 73, "129": 76, "130": 82, "131": 84, "132": 90, "133": 92, "134": 92, "135": 92, "136": 94, "137": 97, "138": 100, "139": 103, "140": 107, "146": 140, "27": 0, "40": 7, "41": 9, "46": 13, "56": 11, "63": 11, "64": 12, "65": 12, "71": 18, "78": 18, "79": 22, "80": 23, "81": 23, "82": 26, "88": 15, "98": 15, "99": 18, "104": 28, "105": 30, "106": 32, "107": 35, "108": 38, "109": 38, "110": 38, "111": 38, "112": 40, "113": 43, "114": 45, "115": 48, "116": 49, "117": 49, "118": 52, "119": 56, "120": 57, "121": 57, "122": 60, "123": 64, "124": 65, "125": 65, "126": 68, "127": 71}}
+{"filename": "/home/dhasvold/PycharmProjects/chef-master/rentals/templates/ItemDetails.html", "line_map": {"128": 106, "129": 110, "135": 11, "142": 11, "143": 12, "144": 12, "150": 144, "27": 0, "40": 7, "41": 9, "46": 13, "56": 18, "63": 18, "64": 22, "65": 23, "66": 23, "67": 26, "73": 15, "83": 15, "84": 18, "89": 28, "90": 30, "91": 32, "92": 35, "93": 38, "94": 38, "95": 38, "96": 38, "97": 40, "98": 43, "99": 45, "100": 48, "101": 49, "102": 49, "103": 52, "104": 56, "105": 57, "106": 57, "107": 60, "108": 64, "109": 65, "110": 65, "111": 68, "112": 71, "113": 73, "114": 76, "115": 78, "116": 79, "117": 80, "118": 81, "119": 83, "120": 87, "121": 93, "122": 95, "123": 95, "124": 95, "125": 97, "126": 100, "127": 103}, "uri": "ItemDetails.html", "source_encoding": "ascii"}
 __M_END_METADATA
 """

@@ -22,6 +22,7 @@ from base_app.CustomWidgets import CustomSelect, CustomRadioRenderer
 from django.contrib.auth import authenticate, login, logout
 import requests
 from django.core.mail import send_mail
+import datetime
 
 templater = get_renderer('account')
 
@@ -200,11 +201,7 @@ class PaymentForm(CustomForm):
 
 		# parse response to a dictionary
 		resp = r.json()
-
-<<<<<<< HEAD
 		print(self.request.session['total'])
-=======
->>>>>>> c5c6137cfba50ca63e284defe01c7520511e96db
 		if 'error' in resp:
 			raise forms.ValidationError("ERROR: " + resp['error'])
 
@@ -235,20 +232,29 @@ def process_request(request):
 	request.session.modified = True
 
 	# Dictionary for items
-	items = {}
+	items = {} #items means items you actually purchased
+	rentals = {}
 
-	# Grab the items from the shopping cart:
-	for pid in request.session['cart']:
+	for item_id in request.session['cart']:
+		try:
+			item = hmod.Inventory.objects.get(id=item_id)
+		except hmod.Inventory.DoesNotExist:
+			return HttpResponse('ITEM NOT FOUND IN DATABASE')
 
 		try:
-			item = hmod.Inventory.objects.get(id=pid)
-		except hmod.Inventory.DoesNotExist:
-			return HttpResponse('failed getting item')
+			if item.item is not None:
+				try:
+					item1 = hmod.Item.objects.get(id=item_id)
+					rentals[item1] = request.session['cart'][item_id]
+				except hmod.Item.DoesNotExist:
+					return HttpResponse('ITEM NOT FOUND IN DATABASE')
 
-		items[item] = request.session['cart'][pid]
+		except hmod.Inventory.DoesNotExist:
+			items[item] = request.session['cart'][item_id]
+
 
 	params['items'] = items
-	params['total'] = 0
+	params['rentals'] = rentals
 
 	return templater.render_to_response(request, 'ShoppingCart.html', params)
 
@@ -269,12 +275,46 @@ def add(request):
 
 	# Grab the item according to the data passed in the GET
 	pid = request.REQUEST.get('id')
-	quantity = int(request.REQUEST.get('quantity'))
-
-	if pid in request.session['cart']:
-		request.session['cart'][pid] += quantity
+	rental = request.REQUEST.get('rental')
+	if rental:
+		pass
 	else:
-		request.session['cart'][pid] = quantity
+		quantity = int(request.REQUEST.get('quantity'))
+
+
+	if rental:
+			due_date = request.REQUEST.get('due_date')
+
+
+			'''split = split[0:split.index('00:00:00')]
+
+
+			request.session['cart'][pid] = split
+
+			true_date = datetime.datetime.strptime(due_date, "%Y-%m-%d %H:%M:%S.%f")
+
+			time = true_date - datetime.datetime.now()
+
+
+			print(time)
+
+			split = str(due_date)
+
+
+			split = split[0:split.index('00:00:00')]'''
+
+
+			request.session['cart'][pid] = due_date
+
+
+
+
+
+	else:
+		if pid in request.session['cart']:
+			request.session['cart'][pid] += quantity
+		else:
+			request.session['cart'][pid] = quantity
 
 	# Make sure the session variable recognizes the change
 	request.session.modified = True
@@ -398,20 +438,52 @@ def confirmation(request):
 	# Define the view bag
 	params={}
 
-	items = []
-	quantity = []
+	trans = hmod.Transaction()
+
+	trans.customer = request.user()
+
+	trans.save()
 
 	for item_id in request.session['cart']:
 
 		try:
-			items.append(hmod.Inventory.objects.get(id=item_id))
+			item = hmod.Inventory.objects.get(id=item_id)
 		except:
 			HttpResponse('Item does not exist')
 
-		quantity.append(request.session['cart'][item_id])
 
-	params['items'] = items
-	params['quantity'] = quantity
+		try:
+			if item.item is not None:
+				pass
+		except hmod.Inventory.DoesNotExist:
+
+			si = hmod.SaleItem()
+			si.product = item
+			si.quantity = request.session['cart'][item_id]
+			si.transaction = trans
+			si.amount = item.specs.price
+
+			si.save()
+
+		item.quantity_on_hand -= 1
+
+	request.session['cart'] = {}
+
+
+	products = []
+	rentals = []
+
+	if trans.saleitem_set.count() > 0:
+		for li in trans.saleitem_set.all():
+			products.append(li)
+
+	if trans.rentalitem_set.count() > 0:
+		for li in trans.rentalitem_set.all():
+			rentals.append(li)
+
+
+	params['products'] = products
+	params['rentals'] = rentals
 
 
 	subject = "Receipt for your purchase"

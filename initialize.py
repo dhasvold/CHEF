@@ -370,27 +370,48 @@ wardrobe_item.end_year     = '1678-1-1'
 wardrobe_item.save()
 
 ################################ ADDRESS ####################################
-for data in [
-	{'address1':'1000 State St', 'city':'Orem','state':'UT','ZIP':'84606'},
-	{'address1':'1000 University Av', 'city':'Provo','state':'UT','ZIP':'84606'},
-	{'address1':'1000 Brown St', 'city':'Park City','state':'UT','ZIP':'84606'},
-]:
-	address = mod.Address()
-	for key in data:
-		setattr(address, key, data[key])
 
-	address.save()
-################################# VENUE #####################################
-for data in [
-	{'name':'Orem City Park', 'address':mod.Address.objects.get(address1='1000 State St')},
-	{'name':'Provo City Park', 'address':mod.Address.objects.get(address1='1000 University Av')},
-	{'name':'Park City Park', 'address':mod.Address.objects.get(address1='1000 Brown St')},
-]:
-	venue = mod.Venue()
-	for key in data:
-		setattr(venue, key, data[key])
+add = mod.Address()
+add.address1 = '1000 State St'
+add.city = 'Orem'
+add.state = 'UT'
+add.ZIP = '84606'
 
-	venue.save()
+add.save()
+
+ven = mod.Venue()
+ven.name = 'Provo City Park'
+ven.address = add
+
+ven.save()
+
+add = mod.Address()
+add.address1 = '1000 University Av'
+add.city = 'Provo'
+add.state = 'UT'
+add.ZIP = '84606'
+
+add.save()
+
+ven = mod.Venue()
+ven.name = 'Orem City Park'
+ven.address = add
+
+ven.save()
+
+add = mod.Address()
+add.address1 = '1000 Brown St'
+add.city = 'Park City'
+add.state = 'UT'
+add.ZIP = '84606'
+
+add.save()
+
+ven = mod.Venue()
+ven.name = 'Park City Park'
+ven.address = add
+
+ven.save()
 
 
 #############EVENTS###################################
