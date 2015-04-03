@@ -1,0 +1,42 @@
+
+<%doc>
+	Author: Derik Hsvold
+	Version: 1.0
+	Updated: 3/20/15
+
+	This is where an agent completes the rental return
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  	Return: ${ item.specs.name }
+</%block>
+
+<%block name="content">
+
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+				<h1>Return: ${ item.specs.name }</h1>
+			</div>
+			## END PAGE TITLE ##
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+    <h3 class="text-left">To Be Completed By Receiving Agent:</h3>
+
+    ${ form }
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>

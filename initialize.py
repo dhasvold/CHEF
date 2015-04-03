@@ -429,6 +429,7 @@ ev.save()
 ar = mod.Area()
 ar.name = 'Musket Station'
 ar.description = 'Here you can shoot some awesome, black-powder muskets'
+ar.high_price = '50.00'
 ar.event = ev
 
 ar.save()

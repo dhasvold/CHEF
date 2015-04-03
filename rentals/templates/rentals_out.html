@@ -1,0 +1,91 @@
+<%doc>
+	Author: Derik Hasvold
+	Version: 1.0
+	Updated: 3/20/15
+
+	This is the page where rentals can be returned.
+</%doc>
+
+<%inherit file="/base_admin/templates/View.htm" />
+
+<%block name="tab_title">
+  	Rental Return
+</%block>
+
+<%block name="content">
+	
+	## PAGE TITLE ##
+	<%block name="page_title">
+		<div class="row">
+			
+			## PAGE TITLE ##
+			<div class="col-md-8">
+				<h1>Current Rentals</h1>
+			</div>
+			## END PAGE TITLE ##
+
+
+		</div>
+	</%block>
+	## END PAGE TITLE ##
+
+    <div class="item_box">
+
+            %if len(rentalItems) == 0:
+                <p>You have no active rentals at this time.</p>
+            %else:
+            ## TABLE OF ITEMS ##
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Date Out
+                        </th>
+                        <th>
+                            Due Date
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    %for li in rentalItems:
+                        <tr>
+                            <td>
+                                 ${ li }
+                            </td>
+                            <td>
+                               ${ li.date_out.strftime('%m/%d/%Y') }
+                            </td>
+                            <td>
+                                ${ li.due_date.strftime('%m/%d/%Y')  }
+                            </td>
+                            <td>
+                                <a class="button" href="/rentals/rentals.return_item/${ li.item.id }/${ li.id }">
+                                    <paper-button raised class="success_button">Return</paper-button>
+                                </a>
+                            </td>
+                        </tr>
+                    %endfor
+                </tbody>
+                </table>
+            %endif
+		</div>
+
+
+
+	## CLEARFIX DIV ##
+	<div class="clearfix"></div>
+	## END CLEARFIX DIV ##
+
+	## SPACER DIVS ##
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	## END SPACER DIVS ##
+
+</%block>
