@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425673939.724605
+_modified_time = 1428018321.212903
 _enable_loop = True
-_template_filename = '/Users/John/DevProjects/Repositories/chef/account/templates/MyAccount.html'
+_template_filename = '/home/dhasvold/PycharmProjects/chef-master/account/templates/MyAccount.html'
 _template_uri = 'MyAccount.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content', 'tab_title', 'page_title']
+_exports = ['page_title', 'tab_title', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -28,14 +28,14 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        form = context.get('form', UNDEFINED)
-        def content():
-            return render_content(context._locals(__M_locals))
-        def tab_title():
-            return render_tab_title(context._locals(__M_locals))
         def page_title():
             return render_page_title(context._locals(__M_locals))
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        form = context.get('form', UNDEFINED)
+        def tab_title():
+            return render_tab_title(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -53,15 +53,39 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_page_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def page_title():
+            return render_page_title(context)
+        __M_writer = context.writer()
+        __M_writer('\n\n\t\t\t<h1>My Account</h1>\n\n\t \t')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_tab_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def tab_title():
+            return render_tab_title(context)
+        __M_writer = context.writer()
+        __M_writer('\n  \tMy Account\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        form = context.get('form', UNDEFINED)
-        def content():
-            return render_content(context)
         def page_title():
             return render_page_title(context)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        form = context.get('form', UNDEFINED)
+        def content():
+            return render_content(context)
         __M_writer = context.writer()
         __M_writer('\n\n\t<div class="page_title">\n\t\t\n\t\t')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'page_title'):
@@ -90,32 +114,8 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_tab_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def tab_title():
-            return render_tab_title(context)
-        __M_writer = context.writer()
-        __M_writer('\n  \tMy Account\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_page_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def page_title():
-            return render_page_title(context)
-        __M_writer = context.writer()
-        __M_writer('\n\n\t\t\t<h1>My Account</h1>\n\n\t \t')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"line_map": {"66": 17, "71": 25, "72": 30, "73": 33, "74": 34, "75": 34, "76": 37, "77": 39, "78": 41, "79": 43, "80": 46, "81": 48, "82": 50, "83": 50, "84": 54, "85": 57, "86": 59, "87": 63, "27": 0, "93": 13, "99": 13, "40": 9, "41": 11, "46": 15, "111": 21, "117": 111, "105": 21, "56": 17}, "source_encoding": "ascii", "uri": "MyAccount.html", "filename": "/Users/John/DevProjects/Repositories/chef/account/templates/MyAccount.html"}
+{"source_encoding": "ascii", "filename": "/home/dhasvold/PycharmProjects/chef-master/account/templates/MyAccount.html", "uri": "MyAccount.html", "line_map": {"68": 13, "74": 13, "80": 17, "110": 59, "90": 17, "27": 0, "95": 25, "96": 30, "97": 33, "98": 34, "99": 34, "100": 37, "101": 39, "102": 41, "103": 43, "40": 9, "41": 11, "106": 50, "107": 50, "108": 54, "109": 57, "46": 15, "111": 63, "104": 46, "117": 111, "105": 48, "56": 21, "62": 21}}
 __M_END_METADATA
 """

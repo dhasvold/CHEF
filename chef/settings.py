@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'products',
     'reports',
     'rentals',
+    'password_reset',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,6 +105,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_URL = '/homepage/index'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
