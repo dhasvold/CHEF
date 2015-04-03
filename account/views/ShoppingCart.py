@@ -23,6 +23,8 @@ from django.contrib.auth import authenticate, login, logout
 import requests
 from django.core.mail import send_mail
 import datetime
+from datetime import timedelta
+import decimal
 
 templater = get_renderer('account')
 
@@ -175,12 +177,18 @@ class PaymentForm(CustomForm):
 
 	## Form Inputs ##
 	credit_card_number = forms.CharField(required=True, max_length=100)
-	card_holder_name = forms.CharField(max_length=100)
-	card_company = forms.CharField(max_length=50)
+	card_holder_name = forms.CharField(required=True, max_length=100)
+	card_company = forms.CharField(required=True, max_length=50)
 	cvc = forms.IntegerField(required=True)
 	expiration_month = forms.CharField(required=True, max_length=2)
 	expiration_year = forms.CharField(required=True, max_length=4)
 	ZIP = forms.CharField(required=True)
+
+	'''def clean(self):
+
+		if self.request.session['total'] is None or self.request.session['card_company'] is None or self.request.session['credit_card_number'] is None or self.request.session['expiration_month'] is None or self.request.session['expiration_year'] is None or self.request.session['cvc'] is None or self.request.session['card_holder_name'] is None:
+			raise forms.ValidationError("Please fill out all fields")
+		return self.cleaned_data'''
 
 	def clean(self):
 		API_URL = 'http://dithers.cs.byu.edu/iscore/api/v1/charges'
@@ -201,7 +209,6 @@ class PaymentForm(CustomForm):
 
 		# parse response to a dictionary
 		resp = r.json()
-		print(self.request.session['total'])
 		if 'error' in resp:
 			raise forms.ValidationError("ERROR: " + resp['error'])
 
@@ -284,6 +291,8 @@ def add(request):
 
 	if rental:
 			due_date = request.REQUEST.get('due_date')
+
+			request.session['rental_time'] = due_date
 
 
 			'''split = split[0:split.index('00:00:00')]
@@ -438,48 +447,62 @@ def confirmation(request):
 	# Define the view bag
 	params={}
 
-	trans = hmod.Transaction()
+	transaction = hmod.Transaction()
 
-	trans.customer = request.user()
+	transaction.customer = request.user
+	transaction.transaction_date = datetime.datetime.now()
 
-	trans.save()
+	transaction.save()
 
-	for item_id in request.session['cart']:
-
-		try:
-			item = hmod.Inventory.objects.get(id=item_id)
-		except:
-			HttpResponse('Item does not exist')
-
-
-		try:
-			if item.item is not None:
-				pass
-		except hmod.Inventory.DoesNotExist:
-
-			si = hmod.SaleItem()
-			si.product = item
-			si.quantity = request.session['cart'][item_id]
-			si.transaction = trans
-			si.amount = item.specs.price
-
-			si.save()
-
-		item.quantity_on_hand -= 1
-
-	request.session['cart'] = {}
-
-
-	products = []
 	rentals = []
+	products = []
 
-	if trans.saleitem_set.count() > 0:
-		for li in trans.saleitem_set.all():
-			products.append(li)
+	# Grab the items from the shopping cart:
+	for pid in request.session['cart']:
 
-	if trans.rentalitem_set.count() > 0:
-		for li in trans.rentalitem_set.all():
-			rentals.append(li)
+		try:
+			inv = hmod.Item.objects.get(id=pid)
+			rentable = True
+		except hmod.Item.DoesNotExist:
+			try:
+				inv = hmod.Inventory.objects.get(id=pid)
+				rentable = False
+			except hmod.Inventory.DoesNotExist:
+				print('How is an item that does not exist getting into the cart?')
+				return HttpResponse('Inventory doesnt exist')
+
+		if not rentable:
+			inv.quantity_on_hand -= request.session['cart'][pid]
+
+			# make a sale line item in the transaction
+			saleitem = hmod.SaleItem()
+			saleitem.product = inv
+			saleitem.quantity = request.session['cart'][pid]
+			saleitem.amount = inv.specs.price * request.session['cart'][pid]
+			saleitem.transaction = transaction
+
+			saleitem.save()
+
+			products.append(saleitem)
+
+		else:
+			inv.quantity_on_hand -= 1
+			inv.times_rented += 1
+
+			days = request.session['cart'][pid]
+			#make a rental line item
+			rentalitem = hmod.RentalItem()
+			rentalitem.date_out = datetime.date.today()
+			rentalitem.due_date = datetime.date.today() + timedelta(days=int(request.session['rental_time']))
+			rentalitem.amount = decimal.Decimal(inv.standard_rental_price) * decimal.Decimal(request.session['rental_time'])
+			rentalitem.item = inv
+			rentalitem.transaction = transaction
+
+			rentalitem.save()
+
+			rentals.append(rentalitem)
+
+		inv.save()
 
 
 	params['products'] = products

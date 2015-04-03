@@ -233,7 +233,7 @@ class CustomForm(forms.Form):
 
 		## HIDDEN FIELDS
 		for field in self.hidden_fields():
-			html.append('div class="hidden_fields">{0}</div'.format(field))
+			html.append('<div class="hidden_fields">{0}</div>'.format(field))
 
 		## FOR LOOP TO LOOP OVER THE FORMS FIELD ##
 		for field in self.visible_fields():

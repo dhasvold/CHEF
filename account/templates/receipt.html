@@ -1113,6 +1113,20 @@
 																							<td style="text-align:center;font-weight: normal;color: #000;font-family: &quot;Open Sans&quot;,sans-serif !important;font-size: 14px;">$${ item.amount }</td>
 																						</tr>
 																					%endfor
+																				</tbody>
+																			</table>
+                                                                            <br>
+                                                                            <br>
+                                                                            <h1 style="Margin-top: 0;font-weight: normal;color: #58595b;font-family: Bitter,Georgia,serif !important;font-size: 26px;Margin-bottom: 12px;line-height: 36px">Rentals</h1>
+																			<table>
+																				<thead>
+																					<tr>
+																						<th style="text-align:center;color: #000;font-family: &quot;Open Sans&quot;,sans-serif !important;font-size: 14px;">Name</th>
+																						<th style="text-align:center;color: #000;font-family: &quot;Open Sans&quot;,sans-serif !important;font-size: 14px;">Due Date</th>
+																						<th style="text-align:center;color: #000;font-family: &quot;Open Sans&quot;,sans-serif !important;font-size: 14px;">Price</th>
+																					</tr>
+																				</thead>
+																				<tbody>
 																					%for item in rentals:
 																						<tr>
 																							<td style="text-align:center;font-weight: normal;color: #000;font-family: &quot;Open Sans&quot;,sans-serif !important;font-size: 14px;">${ item.item.specs.name }</td>
@@ -1122,7 +1136,7 @@
 																					%endfor
 																				</tbody>
 																			</table>
-																			<h3 style="Margin-top: 10px;font-weight: normal;color: #58595b;font-family: Bitter,Georgia,serif !important;font-size: 16px;Margin-bottom: 12px;line-height: 36px">Total Price: ${ request.session['total'] }</h3>
+																			<h3 style="Margin-top: 10px;font-weight: normal;color: #58595b;font-family: Bitter,Georgia,serif !important;font-size: 16px;Margin-bottom: 12px;line-height: 36px">Total Price: $${ request.session['total'] }</h3>
                                 										</td>
                               										</tr>
                             									</tbody>

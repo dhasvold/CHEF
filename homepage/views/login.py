@@ -34,13 +34,45 @@ class LoginForm(CustomForm):
 
 	def clean(self):
 
-		# Check to see if self is valid
+	# Check to see if self is valid
 		if self.is_valid():
 
-			# See if username and password combo is correct
-			user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
 
-			if user is None:
+			uname = self.cleaned_data['username']
+			pword=self.cleaned_data['password']
+
+
+			s = Server('colonialheritagefoundation.info', port=400, get_info=GET_ALL_INFO)
+			try:
+				c = Connection(s, auto_bind=True, client_strategy=STRATEGY_SYNC, user=uname + '@colonialheritagefoundation.local', password=pword, authentication=AUTH_SIMPLE)
+			except:
+				c = None
+
+
+
+			if c is not None:
+				try:
+					user = hmod.User.objects.get(username=uname)
+				except hmod.User.DoesNotExist:
+					user = hmod.User()
+					user.first_name = uname
+					user.last_name = ''
+					user.phone = ''
+					user.username = uname
+					user.set_password(pword)
+
+					user.save()
+
+				try:
+					adminGroup = hmod.Group.objects.get(name='Administrator') #we add this user to admingroup because if they are in AD, they are an employee
+				except hmod.Group.DoesNotExist:
+					print("Administrator Group does not exist?")
+
+				adminGroup.user_set.add(user)
+
+			user1 = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
+
+			if user1 is None:
 				raise forms.ValidationError("Incorrect Username and/or Password")
 
 		return self.cleaned_data
@@ -87,7 +119,7 @@ def process_request(request):
 	form = LoginForm(request)
 
 	# If the user was brought here from the front-page login button, return the ajax form
-	# If not, send user to the main login page. 
+	# If not, send user to the main login page.
 	if request.urlparams[0] == 'modal':
 		form.modal = True
 	else:
@@ -103,27 +135,11 @@ def process_request(request):
 		else:
 			form.modal = False
 
-
-
-			s = Server('byuldap.byu.edu', port=389, get_info=GET_ALL_INFO)
-			c = Connection(s, auto_bind=True, client_strategy=STRATEGY_SYNC, user='dhasvold', password='fallbrook90', authentication=AUTH_SIMPLE)
-
-			print(c.user)
-
-			#when we know it's a valid user, we need to get/create it from/in Django
-
-			u = hmod.user.objects.get_or_create(username=form.cleaned_data['username'])
-
-			u.first_name = ''
-			u.last_name = ''
-			u.set_password('')
-			u.save()
-
 		if form.is_valid():
 
-			## Authenticate again
+			## Authenticate again ##
 			user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-			
+
 			login(request, user)
 
 			## REDIRECT TO PAGE IF USER WAS ON THEIR WAY SOMEWHERE ##
@@ -140,7 +156,7 @@ def process_request(request):
 	params['form'] = form
 
 	# If the user was brought here from the front-page login button, return the ajax form
-	# If not, send user to the main login page. 
+	# If not, send user to the main login page.
 	if form.modal:
 		return templater.render_to_response(request, 'modal_login.html', params)
 	else:

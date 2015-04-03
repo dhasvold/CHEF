@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1428016248.039716
+_modified_time = 1428042381.0822413
 _enable_loop = True
 _template_filename = '/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html'
 _template_uri = 'ShoppingCart.html'
@@ -29,12 +29,12 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         items = context.get('items', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
+        int = context.get('int', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        str = context.get('str', UNDEFINED)
-        int = context.get('int', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         request = context.get('request', UNDEFINED)
+        str = context.get('str', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\n\n')
@@ -51,12 +51,12 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         items = context.get('items', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
+        int = context.get('int', UNDEFINED)
         def content():
             return render_content(context)
-        str = context.get('str', UNDEFINED)
-        int = context.get('int', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         request = context.get('request', UNDEFINED)
+        str = context.get('str', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         __M_writer('\t<div class="full-width-container">\n\t\t\n')
@@ -74,8 +74,11 @@ def render_content(context,**pageargs):
             __M_writer(str( item.specs.price * int(items[item]) ))
             __M_writer('\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t<paper-button raised data-id="')
             __M_writer(str( item.id ))
-            __M_writer('" class="delete_button">Remove</paper-button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t')
-            total += (item.specs.price * items[item]) 
+            __M_writer('" class="delete_button">Remove</paper-button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n                            ')
+            import decimal 
+            
+            __M_writer('\n\t\t\t\t\t\t\t')
+            total += (item.specs.price * decimal.Decimal(items[item])) 
             
             __M_writer('\n')
         __M_writer('\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n            ')
@@ -100,7 +103,7 @@ def render_content(context,**pageargs):
             __M_writer('\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t<paper-button raised data-id="')
             __M_writer(str( item1.id ))
             __M_writer('" class="delete_button">Remove</paper-button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t')
-            total += (price) 
+            total += price 
             
             __M_writer('\n')
         __M_writer('\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\tTotal Price\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th>\n\n\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t<th class="total_price">\n\t\t\t\t\t\t\t\t')
@@ -130,6 +133,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"131": 125, "27": 0, "39": 7, "40": 9, "50": 11, "61": 11, "62": 14, "63": 17, "64": 20, "65": 39, "67": 39, "68": 40, "69": 41, "70": 43, "71": 43, "72": 46, "73": 46, "74": 49, "75": 49, "76": 52, "77": 52, "78": 55, "80": 55, "81": 57, "82": 60, "84": 60, "85": 61, "87": 61, "88": 63, "89": 68, "90": 87, "91": 88, "92": 90, "93": 90, "94": 93, "95": 93, "96": 96, "98": 96, "99": 97, "100": 97, "101": 100, "102": 100, "103": 103, "105": 103, "106": 105, "107": 113, "108": 113, "109": 114, "111": 114, "112": 115, "114": 115, "115": 121, "117": 121, "118": 122, "120": 122, "121": 124, "122": 127, "123": 129, "124": 141, "125": 144}, "uri": "ShoppingCart.html", "filename": "/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html", "source_encoding": "ascii"}
+{"filename": "/home/dhasvold/PycharmProjects/chef-master/account/templates/ShoppingCart.html", "line_map": {"128": 145, "134": 128, "27": 0, "39": 7, "40": 9, "50": 11, "61": 11, "62": 14, "63": 17, "64": 20, "65": 39, "67": 39, "68": 40, "69": 41, "70": 43, "71": 43, "72": 46, "73": 46, "74": 49, "75": 49, "76": 52, "77": 52, "78": 55, "80": 55, "81": 56, "83": 56, "84": 58, "85": 61, "87": 61, "88": 62, "90": 62, "91": 64, "92": 69, "93": 88, "94": 89, "95": 91, "96": 91, "97": 94, "98": 94, "99": 97, "101": 97, "102": 98, "103": 98, "104": 101, "105": 101, "106": 104, "108": 104, "109": 106, "110": 114, "111": 114, "112": 115, "114": 115, "115": 116, "117": 116, "118": 122, "120": 122, "121": 123, "123": 123, "124": 125, "125": 128, "126": 130, "127": 142}, "source_encoding": "ascii", "uri": "ShoppingCart.html"}
 __M_END_METADATA
 """
