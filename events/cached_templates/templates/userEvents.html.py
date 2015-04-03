@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1427491336.670804
+_modified_time = 1428097020.347762
 _enable_loop = True
-_template_filename = 'C:\\Users\\Derik\\PycharmProjects\\chef-master\\events\\templates/userEvents.html'
+_template_filename = '/home/dhasvold/PycharmProjects/chef-master/events/templates/userEvents.html'
 _template_uri = 'userEvents.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['paper_elements_import', 'extra_links', 'content', 'page_title', 'tab_title']
+_exports = ['tab_title', 'page_title', 'paper_elements_import', 'extra_links', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -23,23 +23,23 @@ def _mako_generate_namespaces(context):
     pass
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
-    return runtime._inherit_from(context, '/base_admin/templates/base.htm', _template_uri)
+    return runtime._inherit_from(context, '/base_app/templates/base.htm', _template_uri)
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def content():
-            return render_content(context._locals(__M_locals))
-        events = context.get('events', UNDEFINED)
-        def tab_title():
-            return render_tab_title(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def paper_elements_import():
-            return render_paper_elements_import(context._locals(__M_locals))
-        def page_title():
-            return render_page_title(context._locals(__M_locals))
         def extra_links():
             return render_extra_links(context._locals(__M_locals))
+        events = context.get('events', UNDEFINED)
+        def paper_elements_import():
+            return render_paper_elements_import(context._locals(__M_locals))
+        def tab_title():
+            return render_tab_title(context._locals(__M_locals))
+        def page_title():
+            return render_page_title(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         __M_writer('\r\n\r\n')
@@ -62,6 +62,32 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_tab_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def tab_title():
+            return render_tab_title(context)
+        __M_writer = context.writer()
+        __M_writer('\r\n  Scheduled Events\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_page_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def page_title():
+            return render_page_title(context)
+        __M_writer = context.writer()
+        __M_writer('\r\n\t\t<div class="row">\r\n\t\t\t\r\n')
+        __M_writer('\t\t\t<div class="col-md-8">\r\n\t\t\t\t<h1>Scheduled Events</h1>\r\n\t\t\t</div>\r\n')
+        __M_writer('\r\n\t\t</div>\r\n\t')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -105,11 +131,11 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def page_title():
+            return render_page_title(context)
         def content():
             return render_content(context)
         events = context.get('events', UNDEFINED)
-        def page_title():
-            return render_page_title(context)
         __M_writer = context.writer()
         __M_writer('\r\n\t\r\n')
         __M_writer('\t')
@@ -148,34 +174,8 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_page_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def page_title():
-            return render_page_title(context)
-        __M_writer = context.writer()
-        __M_writer('\r\n\t\t<div class="row">\r\n\t\t\t\r\n')
-        __M_writer('\t\t\t<div class="col-md-8">\r\n\t\t\t\t<h1>Scheduled Events</h1>\r\n\t\t\t</div>\r\n')
-        __M_writer('\r\n\t\t</div>\r\n\t')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_tab_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def tab_title():
-            return render_tab_title(context)
-        __M_writer = context.writer()
-        __M_writer('\r\n  Scheduled Events\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"filename": "C:\\Users\\Derik\\PycharmProjects\\chef-master\\events\\templates/userEvents.html", "line_map": {"128": 60, "129": 62, "130": 64, "131": 85, "132": 86, "133": 91, "134": 91, "135": 94, "136": 94, "137": 97, "138": 97, "139": 97, "140": 100, "141": 100, "142": 106, "143": 109, "144": 111, "145": 115, "151": 27, "27": 0, "157": 27, "158": 31, "159": 35, "165": 10, "171": 10, "44": 6, "45": 8, "177": 171, "50": 12, "55": 18, "60": 22, "70": 14, "77": 14, "78": 15, "79": 15, "80": 16, "81": 16, "82": 17, "83": 17, "89": 20, "96": 20, "97": 21, "98": 21, "104": 24, "114": 24, "115": 27, "120": 37, "121": 39, "122": 41, "123": 44, "124": 49, "125": 51, "126": 55, "127": 58}, "source_encoding": "ascii", "uri": "userEvents.html"}
+{"filename": "/home/dhasvold/PycharmProjects/chef-master/events/templates/userEvents.html", "source_encoding": "ascii", "uri": "userEvents.html", "line_map": {"130": 24, "140": 24, "141": 27, "146": 37, "147": 39, "148": 41, "149": 44, "150": 49, "151": 51, "152": 55, "153": 58, "154": 60, "27": 0, "156": 64, "157": 85, "158": 86, "159": 91, "160": 91, "161": 94, "162": 94, "155": 62, "164": 97, "165": 97, "166": 100, "167": 100, "168": 106, "169": 109, "170": 111, "171": 115, "44": 6, "45": 8, "177": 171, "50": 12, "55": 18, "60": 22, "70": 10, "76": 10, "82": 27, "163": 97, "88": 27, "89": 31, "90": 35, "96": 14, "103": 14, "104": 15, "105": 15, "106": 16, "107": 16, "108": 17, "109": 17, "115": 20, "122": 20, "123": 21, "124": 21}}
 __M_END_METADATA
 """

@@ -58,11 +58,11 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 # Stores all addresses used in relation to Venues and Users
 
 class Address(models.Model):
-	address1 = models.TextField(max_length=100)
+	address1 = models.TextField(max_length=100, null=True)
 	address2 = models.TextField(null=True)
-	city     = models.TextField(max_length=100)
-	state    = models.TextField(max_length=2)
-	ZIP      = models.TextField(max_length=10)
+	city     = models.TextField(max_length=100, null=True)
+	state    = models.TextField(max_length=2, null=True)
+	ZIP      = models.TextField(max_length=10, null=True)
 
 	def __str__(self):
 		return '{0} {1}, {2}'.format(self.address1, self.city, self.state)

@@ -24,7 +24,7 @@
 			<thead>
 				<tr>
 					<th>
-						<paper-button raised class="">Select All</paper-button>
+                        Time Overdue
 					</th>
 					<th>
 						Item Name
@@ -38,10 +38,42 @@
 				</tr>
 			</thead>
 			<tbody>
-				%for item in items:
+            <tr><td><b>30 Days</b></td><td></td><td></td><td></td></tr>
+				%for item in sixty:
 					<tr>
 						<td>
-							<paper-checkbox></paper-checkbox>
+						</td>
+						<td>
+							${ item.item.specs.name }
+						</td>
+						<td>
+							${ item.transaction.customer.get_full_name() }
+						</td>
+						<td>
+							${ item.due_date.strftime('%b %d, %Y') }
+						</td>
+					</tr>
+				%endfor
+           <tr><td><b>60 Days</b></td><td></td><td></td><td></td></tr>
+				%for item in ninety:
+					<tr>
+						<td>
+						</td>
+						<td>
+							${ item.item.specs.name }
+						</td>
+						<td>
+							${ item.transaction.customer.get_full_name() }
+						</td>
+						<td>
+							${ item.due_date.strftime('%b %d, %Y') }
+						</td>
+					</tr>
+				%endfor
+           <tr><td><b>90 Or More Days</b></td><td></td><td></td><td></td></tr>
+				%for item in ninety_plus:
+					<tr>
+						<td>
 						</td>
 						<td>
 							${ item.item.specs.name }
@@ -55,7 +87,7 @@
 					</tr>
 				%endfor
 			</tbody>
-		</table>	
+		</table>
 	</div>
 	## END TABLE OF ITEMS ##
 

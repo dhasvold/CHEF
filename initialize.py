@@ -631,16 +631,16 @@ for data in [
 
 for data in [
 
-	{'date_out':'2000-01-01 00:00:00', 'due_date': '2001-01-01', 'date_in':'2002-01-01 00:00:00', 'item':item, 'transaction':transaction, 'amount':20.00},
-	{'date_out':'2014-12-01 00:00:00', 'due_date': '2015-12-01', 'item':rental_item, 'transaction':transaction, 'amount':20.00},
-	{'date_out':'2014-01-01 00:00:00', 'due_date': '2015-01-01', 'item':wardrobe_item, 'transaction':transaction, 'amount':20.00}
+	{'date_out':'2000-01-01 00:00:00', 'due_date': '2001-01-01', 'item':item, 'transaction':transaction, 'amount':40.87},
+	{'date_out':'2014-01-01 00:00:00', 'due_date': '2015-02-19', 'item':wardrobe_item, 'transaction':transaction, 'amount':27.29},
+	{'date_out':'2014-01-01 00:00:00', 'due_date': '2015-01-20', 'item':wardrobe_item, 'transaction':transaction, 'amount':280.14},
 
 ]:
 
-	rental = mod.RentalItem()
+    rental = mod.RentalItem()
 
-	for key in data:
+    for key in data:
 
-		setattr(rental, key, data[key])
+        setattr(rental, key, data[key])
 
-	rental.save()
+    rental.save()
