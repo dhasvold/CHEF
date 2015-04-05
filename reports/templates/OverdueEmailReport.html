@@ -1,0 +1,42 @@
+<%doc>
+	Author: John Turner
+	Version: 1.0
+	Updated: 3/7/15
+
+	The page through which all reports are rendered. 
+</%doc>
+
+<%inherit file="/base_app/templates/base.htm" />
+
+<%block name="tab_title">
+  Overdue Email Report
+</%block>
+
+<%block name="content">
+
+<h1>Overdue Emails Sent</h1>
+
+	## TABLE OF ITEMS ##
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>
+                        Sent to the following customers:
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				%for user in users:
+					<tr>
+						<td>
+							${ user.first_name } ${ user.last_name }
+						</td>
+					</tr>
+				%endfor
+			</tbody>
+		</table>	
+	</div>
+	## END TABLE OF ITEMS ##
+
+</%block>

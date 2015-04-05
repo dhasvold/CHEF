@@ -16,6 +16,66 @@
 	<h1>${ report_name } Report</h1>
 </%block>
 
+<%block name="top_left_column">
+
+				## BATCH OPTIONS ##
+				<h3>Batch Options</h3>
+
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropwdown" aria-expanded="true">
+						Batch Options
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						<li role="presentation">Delete</li>
+					</ul>
+				</div>
+
+				<paper-button class="success_button run_batch" raised>Submit</paper-button>
+				## END BATCH OPTIONS ##
+
+			</%block>
+
+		</div>
+		## END LEFT COLUMN ##
+
+		## RIGHT COLUMN ##
+		<div class="col-md-6">
+
+			<%block name="top_right_column">
+
+				## FILTER OPTIONS ##
+				<h3>Filter Options</h3>
+
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropwdown" aria-expanded="true">
+						Filter Options
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						<li role="presentation">Delete</li>
+					</ul>
+				</div>
+
+				<paper-input-decorator class="short" floatingLabel label="Criteria">
+					<input is="core-input"></input>
+				</paper-input-decorator>
+
+
+                <a href="/reports/rentals.send_emails/">
+				    <paper-button class="success_button apply_filter" raised>Email Customers</paper-button>
+                </a>
+				## END FILTER OPTIONS ##
+
+			</%block>
+
+		</div>
+		## END RIGHT COLUMN ##
+
+
+
+
+
 <%block name="view_table">
 	
 	## TABLE OF ITEMS ##

@@ -20,6 +20,7 @@ from django.utils.translation import ugettext as _
 from django_mako_plus.controller.router import get_renderer
 from django.utils import timezone
 import datetime
+from django.core.mail import send_mail
 
 templater = get_renderer('reports')
 
@@ -74,3 +75,48 @@ def overdue(request):
     params['report_name'] = 'Overdue Rental Items'
 
     return templater.render_to_response(request, 'Report.html', params)
+
+@view_function
+@permission_required('base_app.add_item', login_url='/homepage/login/')
+def send_emails(request):
+
+    # Define the view bag
+    params={}
+
+    #define range
+    past = datetime.date.today() - datetime.timedelta(days=10000)
+    future = datetime.date.today() + datetime.timedelta(days=100000)
+
+    overdue_items = hmod.RentalItem.objects.filter(due_date__range=[past, future]).filter(date_in=None)
+
+    users = []
+    email_items = []
+    for item in overdue_items:
+        try:
+            user = hmod.User.objects.get(id=item.transaction.customer.id)
+        except hmod.User.DoesNotExist:
+            print('User no longer exists')
+
+        if user not in users:
+            users.append(user)
+
+    for user in users:
+        transactions = user.transaction_set.all()
+        email_items = []
+
+        for trans in transactions:
+            items = trans.rentalitem_set.all()
+
+            for item in items:
+                if item.due_date < datetime.date.today() and item.date_in is None:
+                    email_items.append(item)
+
+        params['items'] = email_items
+
+        subject = "Attention: Overdue Items"
+        body = templater.render(request, 'overdueEmail.html', params)
+        send_mail(subject, body, 'derik.hasvold.backup@gmail.com', [request.user.email], html_message = body, fail_silently = False)
+
+    params['users'] = users
+
+    return HttpResponse(templater.render(request, 'OverdueEmailReport.html', params))
